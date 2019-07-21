@@ -756,15 +756,15 @@ void esmGetConfigValue(esm_config_reg_t *config_reg, config_value_type_t type)
 /* USER CODE BEGIN (35) */
 /* USER CODE END */
 
-/** @fn void esmHighInterrupt(void)
+/** @fn void ESM_High_level_interrupt(void)
 *   @brief High Level Interrupt for ESM
 */
-#pragma CODE_STATE(esmHighInterrupt, 32)
-#pragma INTERRUPT(esmHighInterrupt, FIQ)
+#pragma CODE_STATE(ESM_High_level_interrupt, 32)
+#pragma INTERRUPT(ESM_High_level_interrupt, FIQ)
 /* SourceId : ESM_SourceId_018 */
 /* DesignId : ESM_DesignId_018 */
 /* Requirements : HL_SR21, HL_SR22 */
-void esmHighInterrupt(void)
+void ESM_High_level_interrupt(void)
 {
     uint32 vec = esmREG->IOFFHR - 1U;
 
