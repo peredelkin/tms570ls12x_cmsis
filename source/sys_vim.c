@@ -187,7 +187,7 @@ void eCAP6_Interrupt(void) HANDLER_ATTR; //  109
 void eQEP1_Interrupt(void) HANDLER_ATTR; //  110
 void eQEP2_Interrupt(void) HANDLER_ATTR; //  111
 
-static const t_isrFuncPTR s_vim_init[] =
+static const t_isrFuncPTR s_vim_init[VIM_CHANNELS] =
 {
         &phantomInterrupt, //-1
         &ESM_High_level_interrupt, //  0
@@ -317,7 +317,7 @@ static const t_isrFuncPTR s_vim_init[] =
         &phantomInterrupt, //  124
         &phantomInterrupt, //  125
         &phantomInterrupt //  126
-        };
+};
 
 void vimParityErrorHandler(void);
 

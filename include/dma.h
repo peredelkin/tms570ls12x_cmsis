@@ -271,14 +271,10 @@ typedef struct DMA_CR
     uint32_t DMAPAR;    //  0x1AC DMA Parity Error Address Register.
     uint32_t DMAMPCTRL; //  0x1B0 DMA Memory Protection Control Register
     uint32_t DMAMPST;   //  0x1B4 DMA Memory Protection Status Register.
-    uint32_t DMAMPR0S;  //  0x1B8 DMA Memory Protection Region 0 Start Address Register.
-    uint32_t DMAMPR0E;  //  0x1BC DMA Memory Protection Region 0 End Address Register.
-    uint32_t DMAMPR1S;  //  0x1C0 DMA Memory Protection Region 1 Start Address Register.
-    uint32_t DMAMPR1E;  //  0x1C4 DMA Memory Protection Region 1 End Address Register.
-    uint32_t DMAMPR2S;  //  0x1C8 DMA Memory Protection Region 2 Start Address Register.
-    uint32_t DMAMPR2E;  //  0x1CC DMA Memory Protection Region 2 End Address Register.
-    uint32_t DMAMPR3S;  //  0x1D0 DMA Memory Protection Region 3 Start Address Register.
-    uint32_t DMAMPR3E;  //  0x1D4 DMA Memory Protection Region 3 End Address Register.
+    struct {
+        uint32_t START; // DMA Memory Protection Region Start Address Register.
+        uint32_t END;   // DMA Memory Protection Region End Address Register.
+    }DMAMPR[4U];
 } DMA_CR_t;
 
 
