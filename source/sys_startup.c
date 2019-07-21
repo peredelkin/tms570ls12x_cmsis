@@ -94,6 +94,9 @@ void _c_int00(void);
 #pragma INTERRUPT(_c_int00, RESET)
 #pragma WEAK(_c_int00)
 
+/*таблица прерываний ядра*/
+
+
 /* SourceId : STARTUP_SourceId_001 */
 /* DesignId : STARTUP_DesignId_001 */
 /* Requirements : HL_SR508 */
