@@ -333,7 +333,7 @@ void vimInit(void)
 {
 	/* VIM RAM Parity Enable */
 	VIM_PARCTL = 0xAU;
-	
+
 	/* Initialize VIM table */
     {
         uint32 i;
@@ -343,7 +343,7 @@ void vimInit(void)
             vimRAM->ISR[i] = s_vim_init[i];
         }
     }
-    
+
     /* Set Fall-Back Address Parity Error Register */
 	/*SAFETYMCUSW 439 S MR:11.3 <APPROVED> " Need to store the address of a function in a 32 bit register - Advisory as per MISRA" */
     VIM_FBPARERR = (uint32)&vimParityErrorHandler;
@@ -482,7 +482,7 @@ void vimInit(void)
                     | (uint32)((uint32)SYS_IRQ << 30U)
                     | (uint32)((uint32)SYS_IRQ << 31U);
 
-                    
+
     /* enable interrupts */
     vimREG->REQMASKSET0 = (uint32)((uint32)1U << 0U)
                         | (uint32)((uint32)1U << 1U)
@@ -582,7 +582,7 @@ void vimInit(void)
                         | (uint32)((uint32)0U << 29U)
                         | (uint32)((uint32)0U << 30U)
                         | (uint32)((uint32)0U << 31U);
-                        
+
     vimREG->REQMASKSET3 = (uint32)((uint32)0U << 0U)
                         | (uint32)((uint32)0U << 1U)
                         | (uint32)((uint32)0U << 2U)
@@ -614,7 +614,7 @@ void vimInit(void)
                         | (uint32)((uint32)0U << 28U)
                         | (uint32)((uint32)0U << 29U)
                         | (uint32)((uint32)0U << 30U)
-                        | (uint32)((uint32)0U << 31U);    
+                        | (uint32)((uint32)0U << 31U);
 
     /* Set Capture event sources */
 	vimREG->CAPEVT = ((uint32)((uint32)0U << 0U)
