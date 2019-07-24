@@ -88,8 +88,7 @@ typedef volatile struct vimRam
 
 STARTUP_FUNC_ATTR static void __Default_Handler(void)
 {
-    while (1)
-        ;
+    while (1);
 }
 
 // Обработчик по-умолчанию.
@@ -507,7 +506,7 @@ void vimInit(void)
                         | (uint32)((uint32)0U << 20U)
                         | (uint32)((uint32)0U << 21U)
                         | (uint32)((uint32)0U << 22U)
-                        | (uint32)((uint32)0U << 23U)
+                        | (uint32)((uint32)1U << 23U)
                         | (uint32)((uint32)0U << 24U)
                         | (uint32)((uint32)0U << 25U)
                         | (uint32)((uint32)0U << 26U)

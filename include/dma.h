@@ -20,7 +20,7 @@
 #define DMA_BASE_WCP (DMA_BASE_PCP + 0x800U) //base address for the Working Control Packet
 
 // DMA Control Registers
-typedef struct DMA_CR
+typedef volatile struct DMA_CR
 {
     uint32_t GCTRL;     //  0x000 Global Control Register.
 
