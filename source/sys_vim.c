@@ -45,49 +45,10 @@
 #include "system.h"
 #include "esm.h"
 
-/* USER CODE BEGIN (0) */
-/* USER CODE END */
-
-/* Vim Ram Definition */
-/** @struct vimRam
-*   @brief Vim Ram Definition
-*
-*   This type is used to access the Vim Ram.
-*/
-/** @typedef vimRAM_t
-*   @brief Vim Ram Type Definition
-*
-*   This type is used to access the Vim Ram.
-*/
-typedef volatile struct vimRam
-{
-    t_isrFuncPTR ISR[VIM_CHANNELS];
-} vimRAM_t;
-
-#define vimRAM ((vimRAM_t *)0xFFF82000U)
-
-// Атрибуты обработчиков прерываний.
-#ifndef HANDLER_ATTR
-#define HANDLER_ATTR __attribute__((weak,alias("Default_Handler")))
-#endif
-
-//// Секция функций начального запуска.
-//#ifndef STARTUP_CODE_SECTION
-//#endif
-//
-//// Атрибуты функций начального запуска.
-//#ifndef STARTUP_FUNC_ATTR
-//#ifdef STARTUP_CODE_SECTION
-//#define STARTUP_FUNC_ATTR __attribute__((section(STARTUP_CODE_SECTION)))
-//#else
-//#define STARTUP_FUNC_ATTR
-//#endif //STARTUP_CODE_SECTION
-//#endif
-
 // Реализация обработчика по-умолчанию.
 #pragma CODE_STATE(__Default_Handler, 32)
 #pragma INTERRUPT(__Default_Handler, IRQ)
-/*STARTUP_FUNC_ATTR */ static void __Default_Handler(void)
+static void __Default_Handler(void)
 {
     while (1);
 }
@@ -186,6 +147,7 @@ void eCAP5_Interrupt(void) HANDLER_ATTR; //  108
 void eCAP6_Interrupt(void) HANDLER_ATTR; //  109
 void eQEP1_Interrupt(void) HANDLER_ATTR; //  110
 void eQEP2_Interrupt(void) HANDLER_ATTR; //  111
+
 
 static const t_isrFuncPTR s_vim_init[VIM_CHANNELS] =
 {

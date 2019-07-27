@@ -53,6 +53,9 @@
 /* USER CODE BEGIN (0) */
 /* USER CODE END */
 
+/* VIM General Configuration */
+
+#define VIM_CHANNELS 128U
 
 /* VIM Type Definitions */
 
@@ -62,6 +65,126 @@
 *   This type is used to access the ISR handler.
 */
 typedef void (*t_isrFuncPTR)(void);
+
+/* Vim Ram Definition */
+/** @struct vimRam
+*   @brief Vim Ram Definition
+*
+*   This type is used to access the Vim Ram.
+*/
+/** @typedef vimRAM_t
+*   @brief Vim Ram Type Definition
+*
+*   This type is used to access the Vim Ram.
+*/
+typedef volatile struct vimRam
+{
+    t_isrFuncPTR ISR[VIM_CHANNELS];
+} vimRAM_t;
+
+#define vimRAM ((vimRAM_t *)0xFFF82000U)
+
+// Атрибуты обработчиков прерываний.
+#ifndef HANDLER_ATTR
+#define HANDLER_ATTR __attribute__((weak, alias("Default_Handler")))
+#endif
+
+// Атрибуты extern обработчиков прерываний.
+#ifndef EXTERN_HANDLER_ATTR
+#define EXTERN_HANDLER_ATTR __attribute__((weak, interrupt("IRQ"), target("arm")))
+#endif
+
+
+extern void ESM_High_level_interrupt(void) EXTERN_HANDLER_ATTR; //0
+extern void RTI_compare_interrupt_0(void) EXTERN_HANDLER_ATTR; //  2
+extern void RTI_compare_interrupt_1(void) EXTERN_HANDLER_ATTR; //  3
+extern void RTI_compare_interrupt_2(void) EXTERN_HANDLER_ATTR; //  4
+extern void RTI_compare_interrupt_3(void) EXTERN_HANDLER_ATTR; //  5
+extern void RTI_overflow_interrupt_0(void) EXTERN_HANDLER_ATTR; //  6
+extern void RTI_overflow_interrupt_1(void) EXTERN_HANDLER_ATTR; //  7
+extern void RTI_timebase_interrupt(void) EXTERN_HANDLER_ATTR; //  8
+extern void GIO_interrupt_A(void) EXTERN_HANDLER_ATTR; //  9
+extern void N2HET1_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  10
+extern void HTU1_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  11
+extern void MIBSPI1_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  12
+extern void LIN_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  13
+extern void MIBADC1_event_group_interrupt(void) EXTERN_HANDLER_ATTR; //  14
+extern void MIBADC1_sw_group_1_interrupt(void) EXTERN_HANDLER_ATTR; //  15
+extern void DCAN1_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  16
+extern void SPI2_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  17
+extern void CRC_Interrupt(void) EXTERN_HANDLER_ATTR; //  19
+extern void ESM_Low_level_interrupt(void) EXTERN_HANDLER_ATTR; //  20
+extern void Software_interrupt(void) EXTERN_HANDLER_ATTR; //  21
+extern void PMU_Interrupt(void) EXTERN_HANDLER_ATTR; //  22
+extern void GIO_interrupt_B(void) EXTERN_HANDLER_ATTR; //  23
+extern void N2HET1_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  24
+extern void HTU1_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  25
+extern void MIBSPI1_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  26
+extern void LIN_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  27
+extern void MIBADC1_sw_group_2_interrupt(void) EXTERN_HANDLER_ATTR; //  28
+extern void DCAN1_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  29
+extern void SPI2_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  30
+extern void MIBADC1_magnitude_compare_interrupt(void) EXTERN_HANDLER_ATTR; //  31
+extern void FTCA_interrupt(void) EXTERN_HANDLER_ATTR; //  33
+extern void LFSA_interrupt(void) EXTERN_HANDLER_ATTR; //  34
+extern void DCAN2_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  35
+extern void MIBSPI3_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  37
+extern void MIBSPI3_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  38
+extern void HBCA_interrupt(void) EXTERN_HANDLER_ATTR; //  39
+extern void BTCA_interrupt(void) EXTERN_HANDLER_ATTR; //  40
+extern void AEMIFINT3(void) EXTERN_HANDLER_ATTR; //  41
+extern void DCAN2_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  42
+extern void DCAN1_IF3_interrupt(void) EXTERN_HANDLER_ATTR; //  44
+extern void DCAN3_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  45
+extern void DCAN2_IF3_interrupt(void) EXTERN_HANDLER_ATTR; //  46
+extern void FPU_interrupt(void) EXTERN_HANDLER_ATTR; //  47
+extern void SPI4_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  49
+extern void MibADC2_event_group_interrupt(void) EXTERN_HANDLER_ATTR; //  50
+extern void MibADC2_sw_group1_interrupt(void) EXTERN_HANDLER_ATTR; //  51
+extern void MIBSPI5_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  53
+extern void SPI4_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  54
+extern void DCAN3_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  55
+extern void MIBSPI5_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  56
+extern void MibADC2_sw_group2_interrupt(void) EXTERN_HANDLER_ATTR; //  57
+extern void MibADC2_magnitude_compare_interrupt(void) EXTERN_HANDLER_ATTR; //  59
+extern void DCAN3_IF3_interrupt(void) EXTERN_HANDLER_ATTR; //  60
+extern void FSM_DONE_interrupt(void) EXTERN_HANDLER_ATTR; //  61
+extern void N2HET2_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  63
+extern void SCI_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  64
+extern void HTU2_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  65
+extern void I2C_level_0_interrupt(void) EXTERN_HANDLER_ATTR; //  66
+extern void N2HET2_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  73
+extern void SCI_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  74
+extern void HTU2_level_1_interrupt(void) EXTERN_HANDLER_ATTR; //  75
+extern void HWA_1_INT_REQ_H(void) EXTERN_HANDLER_ATTR; //  80
+extern void HWA_2_INT_REQ_H(void) EXTERN_HANDLER_ATTR; //  81
+extern void DCC1_done_interrupt(void) EXTERN_HANDLER_ATTR; //  82
+extern void DCC2_done_interrupt(void) EXTERN_HANDLER_ATTR; //  83
+extern void PBIST_Done_Interrupt(void) EXTERN_HANDLER_ATTR; //  85
+extern void HWA1_INT_REQ_L(void) EXTERN_HANDLER_ATTR; //  88
+extern void HWA2_INT_REQ_L(void) EXTERN_HANDLER_ATTR; //  89
+extern void ePWM1_Interrupt(void) EXTERN_HANDLER_ATTR; //  90
+extern void ePWM1_Trip_Zone_Interrupt(void) EXTERN_HANDLER_ATTR; //  91
+extern void ePWM2_Interrupt(void) EXTERN_HANDLER_ATTR; //  92
+extern void ePWM2_Trip_Zone_Interrupt(void) EXTERN_HANDLER_ATTR; //  93
+extern void ePWM3_Interrupt(void) EXTERN_HANDLER_ATTR; //  94
+extern void ePWM3_Trip_Zone_Interrupt(void) EXTERN_HANDLER_ATTR; //  95
+extern void ePWM4_Interrupt(void) EXTERN_HANDLER_ATTR; //  96
+extern void ePWM4_Trip_Zone_Interrupt(void) EXTERN_HANDLER_ATTR; //  97
+extern void ePWM5_Interrupt(void) EXTERN_HANDLER_ATTR; //  98
+extern void ePWM5_Trip_Zone_Interrupt(void) EXTERN_HANDLER_ATTR; //  99
+extern void ePWM6_Interrupt(void) EXTERN_HANDLER_ATTR; //  100
+extern void ePWM6_Trip_Zone_Interrupt(void) EXTERN_HANDLER_ATTR; //  101
+extern void ePWM7_Interrupt(void) EXTERN_HANDLER_ATTR; //  102
+extern void ePWM7_Trip_Zone_Interrupt(void) EXTERN_HANDLER_ATTR; //  103
+extern void eCAP1_Interrupt(void) EXTERN_HANDLER_ATTR; //  104
+extern void eCAP2_Interrupt(void) EXTERN_HANDLER_ATTR; //  105
+extern void eCAP3_Interrupt(void) EXTERN_HANDLER_ATTR; //  106
+extern void eCAP4_Interrupt(void) EXTERN_HANDLER_ATTR; //  107
+extern void eCAP5_Interrupt(void) EXTERN_HANDLER_ATTR; //  108
+extern void eCAP6_Interrupt(void) EXTERN_HANDLER_ATTR; //  109
+extern void eQEP1_Interrupt(void) EXTERN_HANDLER_ATTR; //  110
+extern void eQEP2_Interrupt(void) EXTERN_HANDLER_ATTR; //  111
 
 /** @enum systemInterrupt
 *   @brief Alias names for clock sources
@@ -75,24 +198,13 @@ typedef enum systemInterrupt
     SYS_IRQ = 0U, /**< Alias for IRQ interrupt */
     SYS_FIQ = 1U  /**< Alias for FIQ interrupt */
 }systemInterrupt_t;
-/* USER CODE BEGIN (1) */
-/* USER CODE END */
-
-
-/* VIM General Configuration */
-
-#define VIM_CHANNELS 128U
-
-/* USER CODE BEGIN (2) */
-/* USER CODE END */
 
 /* Interrupt Handlers */
 
 extern void esmHighInterrupt(void);
 extern void phantomInterrupt(void);
 
-/* USER CODE BEGIN (3) */
-/* USER CODE END */
+
 
 #define VIM_PARFLG		(*(volatile uint32 *)0xFFFFFDECU)
 #define VIM_PARCTL		(*(volatile uint32 *)0xFFFFFDF0U)
@@ -448,5 +560,6 @@ void vimChannelMap(uint32 request, uint32 channel, t_isrFuncPTR handler);
 void vimEnableInterrupt(uint32 channel, systemInterrupt_t inttype);
 void vimDisableInterrupt(uint32 channel);
 void vimGetConfigValue(vim_config_reg_t *config_reg, config_value_type_t type);
+
 /*@}*/
 #endif
