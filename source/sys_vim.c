@@ -68,31 +68,32 @@ typedef volatile struct vimRam
 
 // Атрибуты обработчиков прерываний.
 #ifndef HANDLER_ATTR
-#define HANDLER_ATTR __attribute__((weak, alias("Default_Handler")))
+#define HANDLER_ATTR __attribute__((weak,alias("Default_Handler")))
 #endif
 
-// Секция функций начального запуска.
-#ifndef STARTUP_CODE_SECTION
-#endif
-
-// Атрибуты функций начального запуска.
-#ifndef STARTUP_FUNC_ATTR
-#ifdef STARTUP_CODE_SECTION
-#define STARTUP_FUNC_ATTR __attribute__((section(STARTUP_CODE_SECTION)))
-#else
-#define STARTUP_FUNC_ATTR
-#endif //STARTUP_CODE_SECTION
-#endif
+//// Секция функций начального запуска.
+//#ifndef STARTUP_CODE_SECTION
+//#endif
+//
+//// Атрибуты функций начального запуска.
+//#ifndef STARTUP_FUNC_ATTR
+//#ifdef STARTUP_CODE_SECTION
+//#define STARTUP_FUNC_ATTR __attribute__((section(STARTUP_CODE_SECTION)))
+//#else
+//#define STARTUP_FUNC_ATTR
+//#endif //STARTUP_CODE_SECTION
+//#endif
 
 // Реализация обработчика по-умолчанию.
-
-STARTUP_FUNC_ATTR static void __Default_Handler(void)
+#pragma CODE_STATE(__Default_Handler, 32)
+#pragma INTERRUPT(__Default_Handler, IRQ)
+/*STARTUP_FUNC_ATTR */ static void __Default_Handler(void)
 {
     while (1);
 }
 
 // Обработчик по-умолчанию.
-void Default_Handler(void) __attribute__((weak, alias("__Default_Handler")));
+void Default_Handler(void) __attribute__((weak,alias("__Default_Handler")));
 
 void Phantom_interrupt(void) HANDLER_ATTR;
 void ESM_High_level_interrupt(void) HANDLER_ATTR; //0
@@ -188,9 +189,9 @@ void eQEP2_Interrupt(void) HANDLER_ATTR; //  111
 
 static const t_isrFuncPTR s_vim_init[VIM_CHANNELS] =
 {
-        &phantomInterrupt, //-1
+        &Default_Handler, //-1
         &ESM_High_level_interrupt, //  0
-        &phantomInterrupt, //  1
+        &Default_Handler, //  1
         &RTI_compare_interrupt_0, //  2
         &RTI_compare_interrupt_1, //  3
         &RTI_compare_interrupt_2, //  4
@@ -207,7 +208,7 @@ static const t_isrFuncPTR s_vim_init[VIM_CHANNELS] =
         &MIBADC1_sw_group_1_interrupt, //  15
         &DCAN1_level_0_interrupt, //  16
         &SPI2_level_0_interrupt, //  17
-        &phantomInterrupt, //  18
+        &Default_Handler, //  18
         &CRC_Interrupt, //  19
         &ESM_Low_level_interrupt, //  20
         &Software_interrupt, //  21
@@ -221,62 +222,62 @@ static const t_isrFuncPTR s_vim_init[VIM_CHANNELS] =
         &DCAN1_level_1_interrupt, //  29
         &SPI2_level_1_interrupt, //  30
         &MIBADC1_magnitude_compare_interrupt, //  31
-        &phantomInterrupt, //  32
+        &Default_Handler, //  32
         &FTCA_interrupt, //  33
         &LFSA_interrupt, //  34
         &DCAN2_level_0_interrupt, //  35
-        &phantomInterrupt, //  36
+        &Default_Handler, //  36
         &MIBSPI3_level_0_interrupt, //  37
         &MIBSPI3_level_1_interrupt, //  38
         &HBCA_interrupt, //  39
         &BTCA_interrupt, //  40
         &AEMIFINT3, //  41
         &DCAN2_level_1_interrupt, //  42
-        &phantomInterrupt, //  43
+        &Default_Handler, //  43
         &DCAN1_IF3_interrupt, //  44
         &DCAN3_level_0_interrupt, //  45
         &DCAN2_IF3_interrupt, //  46
         &FPU_interrupt, //  47
-        &phantomInterrupt, //  48
+        &Default_Handler, //  48
         &SPI4_level_0_interrupt, //  49
         &MibADC2_event_group_interrupt, //  50
         &MibADC2_sw_group1_interrupt, //  51
-        &phantomInterrupt, //  52
+        &Default_Handler, //  52
         &MIBSPI5_level_0_interrupt, //  53
         &SPI4_level_1_interrupt, //  54
         &DCAN3_level_1_interrupt, //  55
         &MIBSPI5_level_1_interrupt, //  56
         &MibADC2_sw_group2_interrupt, //  57
-        &phantomInterrupt, //  58
+        &Default_Handler, //  58
         &MibADC2_magnitude_compare_interrupt, //  59
         &DCAN3_IF3_interrupt, //  60
         &FSM_DONE_interrupt, //  61
-        &phantomInterrupt, //  62
+        &Default_Handler, //  62
         &N2HET2_level_0_interrupt, //  63
         &SCI_level_0_interrupt, //  64
         &HTU2_level_0_interrupt, //  65
         &I2C_level_0_interrupt, //  66
-        &phantomInterrupt, //  67
-        &phantomInterrupt, //  68
-        &phantomInterrupt, //  69
-        &phantomInterrupt, //  70
-        &phantomInterrupt, //  71
-        &phantomInterrupt, //  72
+        &Default_Handler, //  67
+        &Default_Handler, //  68
+        &Default_Handler, //  69
+        &Default_Handler, //  70
+        &Default_Handler, //  71
+        &Default_Handler, //  72
         &N2HET2_level_1_interrupt, //  73
         &SCI_level_1_interrupt, //  74
         &HTU2_level_1_interrupt, //  75
-        &phantomInterrupt, //  76
-        &phantomInterrupt, //  77
-        &phantomInterrupt, //  78
-        &phantomInterrupt, //  79
+        &Default_Handler, //  76
+        &Default_Handler, //  77
+        &Default_Handler, //  78
+        &Default_Handler, //  79
         &HWA_1_INT_REQ_H, //  80
         &HWA_2_INT_REQ_H, //  81
         &DCC1_done_interrupt, //  82
         &DCC2_done_interrupt, //  83
-        &phantomInterrupt, //  84
+        &Default_Handler, //  84
         &PBIST_Done_Interrupt, //  85
-        &phantomInterrupt, //  86
-        &phantomInterrupt, //  87
+        &Default_Handler, //  86
+        &Default_Handler, //  87
         &HWA1_INT_REQ_L, //  88
         &HWA2_INT_REQ_L, //  89
         &ePWM1_Interrupt, //  90
@@ -301,21 +302,21 @@ static const t_isrFuncPTR s_vim_init[VIM_CHANNELS] =
         &eCAP6_Interrupt, //  109
         &eQEP1_Interrupt, //  110
         &eQEP2_Interrupt, //  111
-        &phantomInterrupt, //  112
-        &phantomInterrupt, //  113
-        &phantomInterrupt, //  114
-        &phantomInterrupt, //  115
-        &phantomInterrupt, //  116
-        &phantomInterrupt, //  117
-        &phantomInterrupt, //  118
-        &phantomInterrupt, //  119
-        &phantomInterrupt, //  120
-        &phantomInterrupt, //  121
-        &phantomInterrupt, //  122
-        &phantomInterrupt, //  123
-        &phantomInterrupt, //  124
-        &phantomInterrupt, //  125
-        &phantomInterrupt //  126
+        &Default_Handler, //  112
+        &Default_Handler, //  113
+        &Default_Handler, //  114
+        &Default_Handler, //  115
+        &Default_Handler, //  116
+        &Default_Handler, //  117
+        &Default_Handler, //  118
+        &Default_Handler, //  119
+        &Default_Handler, //  120
+        &Default_Handler, //  121
+        &Default_Handler, //  122
+        &Default_Handler, //  123
+        &Default_Handler, //  124
+        &Default_Handler, //  125
+        &Default_Handler //  126
 };
 
 void vimParityErrorHandler(void);
