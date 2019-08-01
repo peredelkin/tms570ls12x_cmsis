@@ -44,212 +44,12 @@
 #ifndef __HET_H__
 #define __HET_H__
 
-#include "reg_het.h"
-#include <string.h>
+#include "sys_common.h"
+#include "reg_gio.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/* USER CODE BEGIN (0) */
-/* USER CODE END */
-
-/** @def pwm0
-*   @brief Pwm signal 0
-*
-*   Alias for pwm signal 0
-*/
-#define pwm0 0U
-
-/** @def pwm1
-*   @brief Pwm signal 1
-*
-*   Alias for pwm signal 1
-*/
-#define pwm1 1U
-
-/** @def pwm2
-*   @brief Pwm signal 2
-*
-*   Alias for pwm signal 2
-*/
-#define pwm2 2U
-
-/** @def pwm3
-*   @brief Pwm signal 3
-*
-*   Alias for pwm signal 3
-*/
-#define pwm3 3U
-
-/** @def pwm4
-*   @brief Pwm signal 4
-*
-*   Alias for pwm signal 4
-*/
-#define pwm4 4U
-
-/** @def pwm5
-*   @brief Pwm signal 5
-*
-*   Alias for pwm signal 5
-*/
-#define pwm5 5U
-
-/** @def pwm6
-*   @brief Pwm signal 6
-*
-*   Alias for pwm signal 6
-*/
-#define pwm6 6U
-
-/** @def pwm7
-*   @brief Pwm signal 7
-*
-*   Alias for pwm signal 7
-*/
-#define pwm7 7U
-
-
-/** @def edge0
-*   @brief Edge signal 0
-*
-*   Alias for edge signal 0
-*/
-#define edge0 0U
-
-/** @def edge1
-*   @brief Edge signal 1
-*
-*   Alias for edge signal 1
-*/
-#define edge1 1U
-
-/** @def edge2
-*   @brief Edge signal 2
-*
-*   Alias for edge signal 2
-*/
-#define edge2 2U
-
-/** @def edge3
-*   @brief Edge signal 3
-*
-*   Alias for edge signal 3
-*/
-#define edge3 3U
-
-/** @def edge4
-*   @brief Edge signal 4
-*
-*   Alias for edge signal 4
-*/
-#define edge4 4U
-
-/** @def edge5
-*   @brief Edge signal 5
-*
-*   Alias for edge signal 5
-*/
-#define edge5 5U
-
-/** @def edge6
-*   @brief Edge signal 6
-*
-*   Alias for edge signal 6
-*/
-#define edge6 6U
-
-/** @def edge7
-*   @brief Edge signal 7
-*
-*   Alias for edge signal 7
-*/
-#define edge7 7U
-
-
-/** @def cap0
-*   @brief Capture signal 0
-*
-*   Alias for capture signal 0
-*/
-#define cap0 0U
-
-/** @def cap1
-*   @brief Capture signal 1
-*
-*   Alias for capture signal 1
-*/
-#define cap1 1U
-
-/** @def cap2
-*   @brief Capture signal 2
-*
-*   Alias for capture signal 2
-*/
-#define cap2 2U
-
-/** @def cap3
-*   @brief Capture signal 3
-*
-*   Alias for capture signal 3
-*/
-#define cap3 3U
-
-/** @def cap4
-*   @brief Capture signal 4
-*
-*   Alias for capture signal 4
-*/
-#define cap4 4U
-
-/** @def cap5
-*   @brief Capture signal 5
-*
-*   Alias for capture signal 5
-*/
-#define cap5 5U
-
-/** @def cap6
-*   @brief Capture signal 6
-*
-*   Alias for capture signal 6
-*/
-#define cap6 6U
-
-/** @def cap7
-*   @brief Capture signal 7
-*
-*   Alias for capture signal 7
-*/
-#define cap7 7U
-
-/** @def pwmEND_OF_DUTY
-*   @brief Pwm end of duty
-*
-*   Alias for pwm end of duty notification
-*/
-#define pwmEND_OF_DUTY 2U
-
-/** @def pwmEND_OF_PERIOD
-*   @brief Pwm end of period
-*
-*   Alias for pwm end of period notification
-*/
-#define pwmEND_OF_PERIOD 4U
-
-/** @def pwmEND_OF_BOTH
-*   @brief Pwm end of duty and period
-*
-*   Alias for pwm end of duty and period notification
-*/
-#define pwmEND_OF_BOTH 6U
-
-/* USER CODE BEGIN (1) */
-/* USER CODE END */
-
+/* Het Register Frame Definition */
 /** @struct hetBase
-*   @brief HET Register Definition
+*   @brief HET Base Register Definition
 *
 *   This structure is used to access the HET module registers.
 */
@@ -259,606 +59,134 @@ extern "C" {
 *   This type is used to access the HET Registers.
 */
 
-enum hetPinSelect
+typedef volatile struct hetBase
 {
-    PIN_HET_0 = 0U,
-    PIN_HET_1 = 1U,
-    PIN_HET_2 = 2U,
-    PIN_HET_3 = 3U,
-    PIN_HET_4 = 4U,
-    PIN_HET_5 = 5U,
-    PIN_HET_6 = 6U,
-    PIN_HET_7 = 7U,
-    PIN_HET_8 = 8U,
-    PIN_HET_9 = 9U,
-    PIN_HET_10 = 10U,
-    PIN_HET_11 = 11U,
-    PIN_HET_12 = 12U,
-    PIN_HET_13 = 13U,
-    PIN_HET_14 = 14U,
-    PIN_HET_15 = 15U,
-    PIN_HET_16 = 16U,
-    PIN_HET_17 = 17U,
-    PIN_HET_18 = 18U,
-    PIN_HET_19 = 19U,
-    PIN_HET_20 = 20U,
-    PIN_HET_21 = 21U,
-    PIN_HET_22 = 22U,
-    PIN_HET_23 = 23U,
-    PIN_HET_24 = 24U,
-    PIN_HET_25 = 25U,
-    PIN_HET_26 = 26U,
-    PIN_HET_27 = 27U,
-    PIN_HET_28 = 28U,
-    PIN_HET_29 = 29U,
-    PIN_HET_30 = 30U,
-    PIN_HET_31 = 31U
-};
+    uint32 GCR;     /**< 0x0000: Global control register              */
+    uint32 PFR;     /**< 0x0004: Prescale factor register             */
+    uint32 ADDR;    /**< 0x0008: Current address register             */
+    uint32 OFF1;    /**< 0x000C: Interrupt offset register 1          */
+    uint32 OFF2;    /**< 0x0010: Interrupt offset register 2          */
+    uint32 INTENAS; /**< 0x0014: Interrupt enable set register        */
+    uint32 INTENAC; /**< 0x0018: Interrupt enable clear register      */
+    uint32 EXC1;    /**< 0x001C: Exception control register 1          */
+    uint32 EXC2;    /**< 0x0020: Exception control register 2          */
+    uint32 PRY;     /**< 0x0024: Interrupt priority register          */
+    uint32 FLG;     /**< 0x0028: Interrupt flag register              */
+    uint32 AND;     /**< 0x002C: AND share control register         */
+    uint32   rsvd1; /**< 0x0030: Reserved                             */
+    uint32 HRSH;    /**< 0x0034: High resolution share register        */
+    uint32 XOR;     /**< 0x0038: XOR share register                   */
+    uint32 REQENS;  /**< 0x003C: Request enable set register          */
+    uint32 REQENC;  /**< 0x0040: Request enable clear register        */
+    uint32 REQDS;   /**< 0x0044: Request destination select register  */
+    uint32   rsvd2; /**< 0x0048: Reserved                             */
+    uint32 DIR;     /**< 0x004C: Direction register                   */
+    uint32 DIN;     /**< 0x0050: Data input register                  */
+    uint32 DOUT;    /**< 0x0054: Data output register                 */
+    uint32 DSET;    /**< 0x0058: Data output set register             */
+    uint32 DCLR;    /**< 0x005C: Data output clear register           */
+    uint32 PDR;     /**< 0x0060: Open drain register                  */
+    uint32 PULDIS;  /**< 0x0064: Pull disable register                */
+    uint32 PSL;     /**< 0x0068: Pull select register                 */
+    uint32   rsvd3; /**< 0x006C: Reserved                             */
+    uint32   rsvd4; /**< 0x0070: Reserved                             */
+    uint32 PCR;   /**< 0x0074: Parity control register              */
+    uint32 PAR;     /**< 0x0078: Parity address register              */
+    uint32 PPR;     /**< 0x007C: Parity pin select register           */
+    uint32 SFPRLD;  /**< 0x0080: Suppression filter preload register  */
+    uint32 SFENA;   /**< 0x0084: Suppression filter enable register   */
+    uint32   rsvd5; /**< 0x0088: Reserved                             */
+    uint32 LBPSEL;  /**< 0x008C: Loop back pair select register       */
+    uint32 LBPDIR;  /**< 0x0090: Loop back pair direction register    */
+    uint32 PINDIS;  /**< 0x0094: Pin disable register                 */
+} hetBASE_t;
 
 
-/** @struct hetSignal
-*   @brief HET Signal Definition
+/** @struct hetInstructionBase
+*   @brief HET Instruction Definition
 *
-*   This structure is used to define a pwm signal.
+*   This structure is used to access the HET RAM.
 */
-/** @typedef hetSIGNAL_t
-*   @brief HET Signal Type Definition
+/** @typedef hetINSTRUCTION_t
+*   @brief HET Instruction Type Definition
 *
-*   This type is used to access HET Signal Information.
+*   This type is used to access a HET Instruction.
 */
-typedef struct hetSignal
+typedef volatile struct hetInstructionBase
 {
-	uint32 duty;   /**< Duty cycle in % of the period  */
-	float64   period; /**< Period in us                   */
-} hetSIGNAL_t;
+    uint32 Program;
+    uint32 Control;
+    uint32 Data;
+    uint32 rsvd1;
+} hetINSTRUCTION_t;
 
 
-/* Configuration registers */
-typedef struct het_config_reg
-{
-    uint32 CONFIG_GCR;
-    uint32 CONFIG_PFR;
-    uint32 CONFIG_INTENAS;
-    uint32 CONFIG_INTENAC;
-    uint32 CONFIG_PRY;
-    uint32 CONFIG_AND;
-    uint32 CONFIG_HRSH;
-    uint32 CONFIG_XOR;
-    uint32 CONFIG_DIR;
-    uint32 CONFIG_PDR;	
-	uint32 CONFIG_PULDIS;
-	uint32 CONFIG_PSL;	
-	uint32 CONFIG_PCR;	
-} het_config_reg_t;
-
-/* Configuration registers initial value for HET1*/
-#define HET1_DIR_CONFIGVALUE     ((uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-
-#define HET1_PDR_CONFIGVALUE     ((uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-								
-#define HET1_PULDIS_CONFIGVALUE  ((uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET1_PSL_CONFIGVALUE     ((uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-                                | (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET1_HRSH_CONFIGVALUE    ((uint32)0x00008000U \
-								| (uint32)0x00004000U \
-								| (uint32)0x00002000U \
-								| (uint32)0x00001000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000008U \
-								| (uint32)0x00000004U \
-								| (uint32)0x00000002U \
-								| (uint32)0x00000001U)
-
-#define HET1_AND_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET1_XOR_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET1_PFR_CONFIGVALUE    (((uint32)6U << 8U) | (uint32)0U)
-
-
-#define HET1_PRY_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-								
-#define HET1_INTENAC_CONFIGVALUE ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-								
-#define HET1_INTENAS_CONFIGVALUE ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-
-#define HET1_PCR_CONFIGVALUE     ((uint32)0x00000005U)
-#define HET1_GCR_CONFIGVALUE      0x00030001U
-
-
-/* Configuration registers initial value for HET2*/
-#define HET2_DIR_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-
-#define HET2_PDR_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-								
-#define HET2_PULDIS_CONFIGVALUE  ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET2_PSL_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET2_HRSH_CONFIGVALUE    ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000008U \
-								| (uint32)0x00000004U \
-								| (uint32)0x00000002U \
-								| (uint32)0x00000001U)
-
-#define HET2_AND_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET2_XOR_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)								
-								
-#define HET2_PFR_CONFIGVALUE    (((uint32)6U << 8U) | (uint32)0U)
-
-
-#define HET2_PRY_CONFIGVALUE     ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-								
-#define HET2_INTENAC_CONFIGVALUE ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-								
-#define HET2_INTENAS_CONFIGVALUE ((uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U \
-								| (uint32)0x00000000U)
-
-#define HET2_PCR_CONFIGVALUE     ((uint32)0x00000005U)
-#define HET2_GCR_CONFIGVALUE      0x00030001U
-
-
-
-/** 
- *  @defgroup HET HET
- *  @brief HighEnd Timer Module.
- *  
- *  The HET is a software-controlled timer with a dedicated specialized timer micromachine and a set of 30 instructions.
- *  The HET micromachine is connected to a port of up to 32 input/output (I/O) pins.
- *
- *	Related Files
- *   - reg_het.h
- *   - het.h
- *   - het.c
- *   - reg_htu.h
- *   - htu.h
- *   - std_nhet.h
- *  @addtogroup HET
- *  @{
- */
- 
-/* HET Interface Functions */
-void hetInit(void);
-
-/* PWM Interface Functions */
-void   pwmStart(hetRAMBASE_t * hetRAM,uint32 pwm);
-void   pwmStop(hetRAMBASE_t * hetRAM,uint32 pwm);
-void   pwmSetDuty(hetRAMBASE_t * hetRAM,uint32 pwm, uint32 pwmDuty);
-void   pwmSetSignal(hetRAMBASE_t * hetRAM,uint32 pwm, hetSIGNAL_t signal);
-void   pwmGetSignal(hetRAMBASE_t * hetRAM,uint32 pwm, hetSIGNAL_t *signal);
-void   pwmEnableNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification);
-void   pwmDisableNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification);
-void   pwmNotification(hetBASE_t * hetREG,uint32 pwm, uint32 notification);
-
-/* Edge Interface Functions */
-void   edgeResetCounter(hetRAMBASE_t * hetRAM,uint32 edge);
-uint32 edgeGetCounter(hetRAMBASE_t * hetRAM,uint32 edge);
-void   edgeEnableNotification(hetBASE_t * hetREG,uint32 edge);
-void   edgeDisableNotification(hetBASE_t * hetREG,uint32 edge);
-void   edgeNotification(hetBASE_t * hetREG,uint32 edge);
-
-/* Captured Signal Interface Functions */
-void capGetSignal(hetRAMBASE_t * hetRAM, uint32 cap, hetSIGNAL_t *signal);
-
-/* Timestamp Interface Functions */
-void   hetResetTimestamp(hetRAMBASE_t * hetRAM);
-uint32 hetGetTimestamp(hetRAMBASE_t * hetRAM);
-void het1GetConfigValue(het_config_reg_t *config_reg, config_value_type_t type);
-void het2GetConfigValue(het_config_reg_t *config_reg, config_value_type_t type);
-
-/** @fn void hetNotification(hetBASE_t *het, uint32 offset)
-*   @brief het interrupt callback
-*   @param[in] het - Het module base address
-*              - hetREG1: HET1 module base address pointer
-*              - hetREG2: HET2 module base address pointer
-*   @param[in] offset - het interrupt offset / Source number
+/** @struct hetRamBase
+*   @brief HET RAM Definition
 *
-*   @note This function has to be provide by the user.
-*
-* This is a interrupt callback that is provided by the application and is call upon
-* an het interrupt.  The parameter passed to the callback is a copy of the interrupt 
-* offset register which is used to decode the interrupt source.
+*   This structure is used to access the HET RAM.
 */
-void hetNotification(hetBASE_t *het, uint32 offset);
+/** @typedef hetRAMBASE_t
+*   @brief HET RAM Type Definition
+*
+*   This type is used to access the HET RAM.
+*/
+typedef volatile struct het1RamBase
+{
+    hetINSTRUCTION_t Instruction[160U];
+} hetRAMBASE_t;
 
-/* USER CODE BEGIN (2) */
-/* USER CODE END */
 
-/**@}*/
-#ifdef __cplusplus
-}
-#endif /*extern "C" */
+/** @def hetREG1
+*   @brief HET Register Frame Pointer
+*
+*   This pointer is used by the HET driver to access the het module registers.
+*/
+#define hetREG1 ((hetBASE_t *)0xFFF7B800U)
+
+
+/** @def hetPORT1
+*   @brief HET GIO Port Register Pointer
+*
+*   Pointer used by the GIO driver to access I/O PORT of HET1
+*   (use the GIO drivers to access the port pins).
+*/
+#define hetPORT1 ((gioPORT_t *)0xFFF7B84CU)
+
+/** @def hetRAM1
+*   @brief NHET1 RAM Pointer
+*
+*   This pointer is used by the HET driver to access the NHET1 memory.
+*/
+#define hetRAM1 ((hetRAMBASE_t *)0xFF460000U)
+
+#define NHET1RAMPARLOC  (*(volatile uint32 *)0xFF462000U)
+#define NHET1RAMLOC     (*(volatile uint32 *)0xFF460000U)
+
+/** @def hetREG2
+*   @brief HET2 Register Frame Pointer
+*
+*   This pointer is used by the HET driver to access the het module registers.
+*/
+#define hetREG2 ((hetBASE_t *)0xFFF7B900U)
+
+/** @def hetPORT2
+*   @brief HET2 GIO Port Register Pointer
+*
+*   Pointer used by the GIO driver to access I/O PORT of HET2
+*   (use the GIO drivers to access the port pins).
+*/
+#define hetPORT2 ((gioPORT_t *)0xFFF7B94CU)
+
+/** @def hetRAM2
+*   @brief NHET1 RAM Pointer
+*
+*   This pointer is used by the HET driver to access the NHET2 memory.
+*/
+#define hetRAM2 ((hetRAMBASE_t *)0xFF440000U)
+
+#define NHET2RAMPARLOC  (*(volatile uint32 *)0xFF442000U)
+#define NHET2RAMLOC     (*(volatile uint32 *)0xFF440000U)
+
 
 #endif
