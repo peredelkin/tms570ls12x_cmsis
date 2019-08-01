@@ -1301,19 +1301,19 @@ void dmaParityCheck(void)
 void het1ParityCheck(void)
 {
     volatile uint32 nhetread = 0U;
-    uint32 hetpcr_bk = hetREG1->PCR;
+    uint32 hetpcr_bk = hetREG1->HETPCR;
 
 /* USER CODE BEGIN (53) */
 /* USER CODE END */
 
     /* Set TEST mode and enable parity checking */
-    hetREG1->PCR = 0x0000010AU;
+    hetREG1->HETPCR = 0x0000010AU;
 
     /* flip parity bit */
     NHET1RAMPARLOC ^= 0x1U;
 
     /* Disable TEST mode */
-    hetREG1->PCR = 0x0000000AU;
+    hetREG1->HETPCR = 0x0000000AU;
 
     /* read to cause parity error */
     nhetread = NHET1RAMLOC;
@@ -1330,14 +1330,14 @@ void het1ParityCheck(void)
         esmREG->SR1[0U] = 0x80U;
 
         /* Set TEST mode and enable parity checking */
-        hetREG1->PCR = 0x0000010AU;
+        hetREG1->HETPCR = 0x0000010AU;
 
         /* Revert back to correct data, flip bit 0 of the parity location */
         NHET1RAMPARLOC ^= 0x1U;
     }
 
     /* Restore Parity comtrol register */
-    hetREG1->PCR = hetpcr_bk;
+    hetREG1->HETPCR = hetpcr_bk;
 
 /* USER CODE BEGIN (54) */
 /* USER CODE END */
@@ -1411,20 +1411,20 @@ void htu1ParityCheck(void)
 void het2ParityCheck(void)
 {
     volatile uint32 nhetread = 0U;
-    uint32 hetpcr_bk = hetREG2->PCR;
+    uint32 hetpcr_bk = hetREG2->HETPCR;
 	uint32 esmCh7Stat, esmCh34Stat = 0U;
 	
 /* USER CODE BEGIN (57) */
 /* USER CODE END */
 
     /* Set TEST mode and enable parity checking */
-    hetREG2->PCR = 0x0000010AU;
+    hetREG2->HETPCR = 0x0000010AU;
 
     /* flip parity bit */
     NHET2RAMPARLOC ^= 0x1U;
 
     /* Disable TEST mode */
-    hetREG2->PCR = 0x0000000AU;
+    hetREG2->HETPCR = 0x0000000AU;
 
     /* read to cause parity error */
     nhetread = NHET2RAMLOC;
@@ -1446,14 +1446,14 @@ void het2ParityCheck(void)
         esmREG->SR4[0U] = 0x4U;
 
         /* Set TEST mode and enable parity checking */
-        hetREG2->PCR = 0x0000010AU;
+        hetREG2->HETPCR = 0x0000010AU;
 
         /* Revert back to correct data, flip bit 0 of the parity location */
         NHET2RAMPARLOC ^= 0x1U;
     }
 
     /* Restore parity control register */
-    hetREG2->PCR = hetpcr_bk;
+    hetREG2->HETPCR = hetpcr_bk;
 
 /* USER CODE BEGIN (58) */
 /* USER CODE END */
@@ -2955,9 +2955,9 @@ void enableParity(void)
     canREG3->CTL = ((uint32)0xAU << 10U) | 1U;    /* Enable CAN3 RAM parity */
     adcREG1->PARCR = 0xAU;                 /* Enable ADC1 RAM parity */
     adcREG2->PARCR = 0xAU;                 /* Enable ADC2 RAM parity */
-    hetREG1->PCR = 0xAU;                   /* Enable HET1 RAM parity */
+    hetREG1->HETPCR = 0xAU;                   /* Enable HET1 RAM parity */
     htuREG1->PCR = 0xAU;                   /* Enable HTU1 RAM parity */
-    hetREG2->PCR = 0xAU;                   /* Enable HET2 RAM parity */
+    hetREG2->HETPCR = 0xAU;                   /* Enable HET2 RAM parity */
     htuREG2->PCR = 0xAU;                   /* Enable HTU2 RAM parity */
 }
 
@@ -2978,8 +2978,8 @@ void disableParity(void)
     canREG3->CTL = ((uint32)0x5U << 10U) | 1U;    /* Disable CAN3 RAM parity */
     adcREG1->PARCR = 0x5U;                 /* Disable ADC1 RAM parity */
     adcREG2->PARCR = 0x5U;                 /* Disable ADC2 RAM parity */
-    hetREG1->PCR = 0x5U;                   /* Disable HET1 RAM parity */
+    hetREG1->HETPCR = 0x5U;                   /* Disable HET1 RAM parity */
     htuREG1->PCR = 0x5U;                   /* Disable HTU1 RAM parity */
-    hetREG2->PCR = 0x5U;                   /* Disable HET2 RAM parity */
+    hetREG2->HETPCR = 0x5U;                   /* Disable HET2 RAM parity */
     htuREG2->PCR = 0x5U;                   /* Disable HTU2 RAM parity */
 }

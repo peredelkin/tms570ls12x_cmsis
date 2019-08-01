@@ -11,7 +11,7 @@
 #define INCLUDE_DMA_H_
 
 #include "sys_common.h"
-#include <assert.h>
+#include "static_assert.h"
 
 #define DMA_BASE_CR 0xFFFFF000U //base address for the Control Registers
 

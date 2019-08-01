@@ -1,43 +1,9 @@
-/** @file het.h
-*   @brief HET Driver Definition File
-*   @date 11-Dec-2018
-*   @version 04.07.01
-*   
-*/
-
-/* 
-* Copyright (C) 2009-2018 Texas Instruments Incorporated - www.ti.com  
-* 
-* 
-*  Redistribution and use in source and binary forms, with or without 
-*  modification, are permitted provided that the following conditions 
-*  are met:
-*
-*    Redistributions of source code must retain the above copyright 
-*    notice, this list of conditions and the following disclaimer.
-*
-*    Redistributions in binary form must reproduce the above copyright
-*    notice, this list of conditions and the following disclaimer in the 
-*    documentation and/or other materials provided with the   
-*    distribution.
-*
-*    Neither the name of Texas Instruments Incorporated nor the names of
-*    its contributors may be used to endorse or promote products derived
-*    from this software without specific prior written permission.
-*
-*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
-*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
-*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
-*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
-*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
-*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
-*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*
-*/
+/**
+ * het.h
+ * tms570ls12x
+ *
+ *
+ */
 
 
 
@@ -46,72 +12,77 @@
 
 #include "sys_common.h"
 #include "reg_gio.h"
-
-/* Het Register Frame Definition */
-/** @struct hetBase
-*   @brief HET Base Register Definition
-*
-*   This structure is used to access the HET module registers.
-*/
-/** @typedef hetBASE_t
-*   @brief HET Register Frame Type Definition
-*
-*   This type is used to access the HET Registers.
-*/
+#include "static_assert.h"
 
 typedef volatile struct hetBase
 {
-    uint32 GCR;     /**< 0x0000: Global control register              */
-    uint32 PFR;     /**< 0x0004: Prescale factor register             */
-    uint32 ADDR;    /**< 0x0008: Current address register             */
-    uint32 OFF1;    /**< 0x000C: Interrupt offset register 1          */
-    uint32 OFF2;    /**< 0x0010: Interrupt offset register 2          */
-    uint32 INTENAS; /**< 0x0014: Interrupt enable set register        */
-    uint32 INTENAC; /**< 0x0018: Interrupt enable clear register      */
-    uint32 EXC1;    /**< 0x001C: Exception control register 1          */
-    uint32 EXC2;    /**< 0x0020: Exception control register 2          */
-    uint32 PRY;     /**< 0x0024: Interrupt priority register          */
-    uint32 FLG;     /**< 0x0028: Interrupt flag register              */
-    uint32 AND;     /**< 0x002C: AND share control register         */
-    uint32   rsvd1; /**< 0x0030: Reserved                             */
-    uint32 HRSH;    /**< 0x0034: High resolution share register        */
-    uint32 XOR;     /**< 0x0038: XOR share register                   */
-    uint32 REQENS;  /**< 0x003C: Request enable set register          */
-    uint32 REQENC;  /**< 0x0040: Request enable clear register        */
-    uint32 REQDS;   /**< 0x0044: Request destination select register  */
-    uint32   rsvd2; /**< 0x0048: Reserved                             */
-    uint32 DIR;     /**< 0x004C: Direction register                   */
-    uint32 DIN;     /**< 0x0050: Data input register                  */
-    uint32 DOUT;    /**< 0x0054: Data output register                 */
-    uint32 DSET;    /**< 0x0058: Data output set register             */
-    uint32 DCLR;    /**< 0x005C: Data output clear register           */
-    uint32 PDR;     /**< 0x0060: Open drain register                  */
-    uint32 PULDIS;  /**< 0x0064: Pull disable register                */
-    uint32 PSL;     /**< 0x0068: Pull select register                 */
-    uint32   rsvd3; /**< 0x006C: Reserved                             */
-    uint32   rsvd4; /**< 0x0070: Reserved                             */
-    uint32 PCR;   /**< 0x0074: Parity control register              */
-    uint32 PAR;     /**< 0x0078: Parity address register              */
-    uint32 PPR;     /**< 0x007C: Parity pin select register           */
-    uint32 SFPRLD;  /**< 0x0080: Suppression filter preload register  */
-    uint32 SFENA;   /**< 0x0084: Suppression filter enable register   */
-    uint32   rsvd5; /**< 0x0088: Reserved                             */
-    uint32 LBPSEL;  /**< 0x008C: Loop back pair select register       */
-    uint32 LBPDIR;  /**< 0x0090: Loop back pair direction register    */
-    uint32 PINDIS;  /**< 0x0094: Pin disable register                 */
+    /*00*/ uint32_t HETGCR;        /*Global Configuration Register*/
+    /*04*/ uint32_t HETPFR;        /*Prescale Factor Register*/
+    /*08*/ uint32_t HETADDR;       /*NHET Current Address Register*/
+    /*0C*/ uint32_t HETOFF1;       /*Offset Index Priority Level 1 Register*/
+    /*10*/ uint32_t HETOFF2;       /*Offset Index Priority Level 2 Register*/
+    /*14*/ uint32_t HETINTENAS;    /*Interrupt Enable Set Register*/
+    /*18*/ uint32_t HETINTENAC;    /*Interrupt Enable Clear Register*/
+    /*1C*/ uint32_t HETEXC1;       /*Exception Control Register 1*/
+    /*20*/ uint32_t HETEXC2;       /*Exception Control Register 2*/
+    /*24*/ uint32_t HETPRY;        /*Interrupt Priority Register*/
+    /*28*/ uint32_t HETFLG;        /*Interrupt Flag Register*/
+    /*2C*/ uint32_t HETAND;        /*AND Share Control Register*/
+    /*30*/ uint32_t : 32U;
+    /*34*/ uint32_t HETHRSH;       /*HR Share Control Register*/
+    /*38*/ uint32_t HETXOR;        /*HR XOR-Share Control Register*/
+    /*3C*/ uint32_t HETREQENS;     /*Request Enable Set Register*/
+    /*40*/ uint32_t HETREQENC;     /*Request Enable Clear Register*/
+    /*44*/ uint32_t HETREQDS;      /*Request Destination Select Register*/
+    /*48*/ uint32_t : 32U;
+    /*4C*/ uint32_t HETDIR;        /*NHET Direction Register*/
+    /*50*/ uint32_t HETDIN;        /*NHET Data Input Register*/
+    /*54*/ uint32_t HETDOUT;       /*NHET Data Output Register*/
+    /*58*/ uint32_t HETDSET;       /*NHET Data Set Register*/
+    /*5C*/ uint32_t HETDCLR;       /*NHET Data Clear Register*/
+    /*60*/ uint32_t HETPDR;        /*NHET Open Drain Register*/
+    /*64*/ uint32_t HETPULDIS;     /*NHET Pull Disable Register*/
+    /*68*/ uint32_t HETPSL;        /*NHET Pull Select Register*/
+    /*6C*/ uint32_t : 32U;
+    /*70*/ uint32_t : 32U;
+    /*74*/ uint32_t HETPCR;        /*Parity Control Register*/
+    /*78*/ uint32_t HETPAR;        /*Parity Address Register*/
+    /*7C*/ uint32_t HETPPR;        /*Parity Pin Register*/
+    /*80*/ uint32_t HETSFPRLD;     /*Suppression Filter Preload Register*/
+    /*84*/ uint32_t HETSFENA;      /*Suppression Filter Enable Register*/
+    /*88*/ uint32_t : 32U;
+    /*8C*/ uint32_t HETLBPSEL;     /*Loop Back Pair Select Register*/
+    /*90*/ uint32_t HETLBPDIR;     /*Loop Back Pair Direction Register*/
+    /*94*/ uint32_t HETPINDIS;     /*NHET Pin Disable Register*/
+    /*98*/ uint32_t : 32U;
+    /*9C*/ uint32_t HWAPINSEL;     /*HWAG Pin Select Register*/
+    /*A0*/ uint32_t HWAGCR0;       /*HWAG Global Control Register 0*/
+    /*A4*/ uint32_t HWAGCR1;       /*HWAG Global Control Register 1*/
+    /*A8*/ uint32_t HWAGCR2;       /*HWAG Global Control Register 2*/
+    /*AC*/ uint32_t HWAENASET;     /*HWAG Interrupt Enable Set Register*/
+    /*B0*/ uint32_t HWAENACLR;     /*HWAG Interrupt Enable Clear Register*/
+    /*B4*/ uint32_t HWALVLSET;     /*HWAG Interrupt Level Set Register*/
+    /*B8*/ uint32_t HWALVLCLR;     /*HWAG Interrupt Level Clear Register*/
+    /*BC*/ uint32_t HWAFLG;        /*HWAG Interrupt Flag Register*/
+    /*C0*/ uint32_t HWAOFF0;       /*HWAG Interrupt Offset Register 1*/
+    /*C4*/ uint32_t HWAOFF1;       /*HWAG Interrupt Offset Register 2*/
+    /*C8*/ uint32_t HWAACNT;       /*HWAG Angle Value Register*/
+    /*CC*/ uint32_t HWAPCNT1;      /*HWAG Previous Tooth Period Value Register*/
+    /*D0*/ uint32_t HWAPCNT;       /*HWAG Current Tooth Period Value Register*/
+    /*D4*/ uint32_t HWASTWD;       /*HWAG Step Width Register*/
+    /*D8*/ uint32_t HWATHNB;       /*HWAG Teeth Number Register*/
+    /*DC*/ uint32_t HWATHVL;       /*HWAG Current Teeth Number Register*/
+    /*E0*/ uint32_t HWAFIL;        /*HWAG Filter Register*/
+    /*E4*/ uint32_t : 32U;
+    /*E8*/ uint32_t HWAFIL2;       /*HWAG Filter Register 2*/
+    /*EC*/ uint32_t : 32U;
+    /*F0*/ uint32_t HWAANGI;       /*HWAG Angle Increment Register*/
+
 } hetBASE_t;
 
+//Checking size of hetBASE_t
+STATIC_ASSERT(sizeof(hetBASE_t) == 0xF4,);
 
-/** @struct hetInstructionBase
-*   @brief HET Instruction Definition
-*
-*   This structure is used to access the HET RAM.
-*/
-/** @typedef hetINSTRUCTION_t
-*   @brief HET Instruction Type Definition
-*
-*   This type is used to access a HET Instruction.
-*/
 typedef volatile struct hetInstructionBase
 {
     uint32 Program;
@@ -121,68 +92,25 @@ typedef volatile struct hetInstructionBase
 } hetINSTRUCTION_t;
 
 
-/** @struct hetRamBase
-*   @brief HET RAM Definition
-*
-*   This structure is used to access the HET RAM.
-*/
-/** @typedef hetRAMBASE_t
-*   @brief HET RAM Type Definition
-*
-*   This type is used to access the HET RAM.
-*/
 typedef volatile struct het1RamBase
 {
     hetINSTRUCTION_t Instruction[160U];
 } hetRAMBASE_t;
 
+//Checking size of hetRAMBASE_t
+STATIC_ASSERT(sizeof(hetRAMBASE_t) == 0xA00,);
 
-/** @def hetREG1
-*   @brief HET Register Frame Pointer
-*
-*   This pointer is used by the HET driver to access the het module registers.
-*/
+
 #define hetREG1 ((hetBASE_t *)0xFFF7B800U)
-
-
-/** @def hetPORT1
-*   @brief HET GIO Port Register Pointer
-*
-*   Pointer used by the GIO driver to access I/O PORT of HET1
-*   (use the GIO drivers to access the port pins).
-*/
 #define hetPORT1 ((gioPORT_t *)0xFFF7B84CU)
-
-/** @def hetRAM1
-*   @brief NHET1 RAM Pointer
-*
-*   This pointer is used by the HET driver to access the NHET1 memory.
-*/
 #define hetRAM1 ((hetRAMBASE_t *)0xFF460000U)
 
 #define NHET1RAMPARLOC  (*(volatile uint32 *)0xFF462000U)
 #define NHET1RAMLOC     (*(volatile uint32 *)0xFF460000U)
 
-/** @def hetREG2
-*   @brief HET2 Register Frame Pointer
-*
-*   This pointer is used by the HET driver to access the het module registers.
-*/
+
 #define hetREG2 ((hetBASE_t *)0xFFF7B900U)
-
-/** @def hetPORT2
-*   @brief HET2 GIO Port Register Pointer
-*
-*   Pointer used by the GIO driver to access I/O PORT of HET2
-*   (use the GIO drivers to access the port pins).
-*/
 #define hetPORT2 ((gioPORT_t *)0xFFF7B94CU)
-
-/** @def hetRAM2
-*   @brief NHET1 RAM Pointer
-*
-*   This pointer is used by the HET driver to access the NHET2 memory.
-*/
 #define hetRAM2 ((hetRAMBASE_t *)0xFF440000U)
 
 #define NHET2RAMPARLOC  (*(volatile uint32 *)0xFF442000U)
