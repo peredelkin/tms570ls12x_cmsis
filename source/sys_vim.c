@@ -45,6 +45,18 @@
 #include "system.h"
 #include "esm.h"
 
+void _Enable_Irq(void) {
+__asm(" MRS R1, CPSR");
+__asm(" BIC R1, R1, #0x80");
+__asm(" MSR CPSR, R1");
+}
+
+void _HW_Vec_Init(void) {
+__asm(" MRC p15 ,#0 ,R1 ,c1 ,c0 ,#0");
+__asm(" ORR R1 ,R1 ,#0x1000000");
+__asm(" MCR p15 ,#0 ,R1 ,c1 ,c0 ,#0");
+}
+
 // Реализация обработчика по-умолчанию.
 #pragma CODE_STATE(__Default_Handler, 32)
 #pragma INTERRUPT(__Default_Handler, IRQ)

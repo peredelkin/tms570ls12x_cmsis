@@ -561,5 +561,8 @@ void vimEnableInterrupt(uint32 channel, systemInterrupt_t inttype);
 void vimDisableInterrupt(uint32 channel);
 void vimGetConfigValue(vim_config_reg_t *config_reg, config_value_type_t type);
 
+extern void _Enable_Irq(void);
+extern void _HW_Vec_Init(void);
+
 /*@}*/
 #endif
