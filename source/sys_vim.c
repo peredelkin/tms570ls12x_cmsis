@@ -68,6 +68,17 @@ static void __Default_Handler(void)
 // Обработчик по-умолчанию.
 void Default_Handler(void) __attribute__((weak,alias("__Default_Handler")));
 
+//// Прерывания ядра
+//void _c_int00(void) HANDLER_ATTR;       //0
+//void undefEntry(void) HANDLER_ATTR;     //1
+//void svcEntry(void) HANDLER_ATTR;       //2
+//void prefetchEntry(void) HANDLER_ATTR;  //3
+//void _dabort(void) HANDLER_ATTR;        //4
+//                                        //5
+//void IRQEntry(void) HANDLER_ATTR;       //6
+//void FIQEntry(void) HANDLER_ATTR;       //7
+
+// Внешние прерывания
 void Phantom_interrupt(void) HANDLER_ATTR;
 void ESM_High_level_interrupt(void) HANDLER_ATTR; //0
 void RTI_compare_interrupt_0(void) HANDLER_ATTR; //  2

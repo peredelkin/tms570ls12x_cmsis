@@ -94,7 +94,21 @@ typedef volatile struct vimRam
 #define EXTERN_HANDLER_ATTR __attribute__((weak, interrupt("IRQ"), target("arm")))
 #endif
 
+// Обработчик по умолчанию
+extern void Default_Handler(void);
 
+//// Прерывания ядра
+//extern void _c_int00(void) EXTERN_HANDLER_ATTR;         //0
+//extern void undefEntry(void) EXTERN_HANDLER_ATTR;       //1
+//extern void svcEntry(void) EXTERN_HANDLER_ATTR;         //2
+//extern void prefetchEntry(void) EXTERN_HANDLER_ATTR;    //3
+//extern void _dabort(void) EXTERN_HANDLER_ATTR;          //4
+//                                                        //5
+//extern void IRQEntry(void) EXTERN_HANDLER_ATTR;         //6
+//extern void FIQEntry(void) EXTERN_HANDLER_ATTR;         //7
+
+
+// Внешние прерывания
 extern void ESM_High_level_interrupt(void) EXTERN_HANDLER_ATTR; //0
 extern void RTI_compare_interrupt_0(void) EXTERN_HANDLER_ATTR; //  2
 extern void RTI_compare_interrupt_1(void) EXTERN_HANDLER_ATTR; //  3

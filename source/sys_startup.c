@@ -90,12 +90,30 @@ void _c_int00(void);
 /* USER CODE BEGIN (4) */
 /* USER CODE END */
 
+//// Прерывания ядра
+//void IRQEntry(void) {
+//    __asm(" ldr pc,[pc,#-0x1b0]");
+//}
+//
+//void FIQEntry(void) {
+//    __asm(" ldr pc,[pc,#-0x1b0]");
+//}
+//
+//__attribute__((section(".intvecs"),used)) static void* _core_intvecs [8] =
+//{
+// (void*)_c_int00,
+// (void*)undefEntry,
+// (void*)svcEntry,
+// (void*)prefetchEntry,
+// (void*)_dabort,
+// (void*)Default_Handler,
+// (void*)IRQEntry,
+// (void*)FIQEntry
+//};
+
 #pragma CODE_STATE(_c_int00, 32)
 #pragma INTERRUPT(_c_int00, RESET)
 #pragma WEAK(_c_int00)
-
-/*таблица прерываний ядра*/
-
 
 /* SourceId : STARTUP_SourceId_001 */
 /* DesignId : STARTUP_DesignId_001 */
