@@ -14,6 +14,45 @@
 #include "reg_gio.h"
 #include "static_assert.h"
 
+//Дефайны HETGCR
+#define HETGCR_HET_PIN_ENA      ((uint32_t)(1<<24)) //Enables the pin output buffer structure when DIR = output, PINDIS.x is set and nDIS = 1.
+#define HETGCR_MP_1h            ((uint32_t)(1<<21)) //The HTU has higher priority to access the N2HET RAM than the arbiter output.
+#define HETGCR_MP_2h            ((uint32_t)(2<<21)) //The HTU and the arbiter output use a round robin scheme to access the N2HET RAM.
+#define HETGCR_MP_3h            ((uint32_t)(3<<21)) //Reserved
+#define HETGCR_PPF              ((uint32_t)(1<<18)) //When TO is 1,the program fields are readable but not writable for all masters, which could access the N2HET RAM.
+#define HETGCR_IS               ((uint32_t)(1<<17)) //N2HET ignores suspend mode and continues operation.
+#define HETGCR_CMS              ((uint32_t)(1<<16)) //N2HET is configured as a master.
+#define HETGCR_TO               ((uint32_t)(1<<0))  //N2HET is ON. The timer program execution starts synchronously to the Loop clock.
+
+//Дефайны HETPFR
+//Loop-Resolution Pre-scale Factor Code.
+#define HETPFR_LRPFC_1h         ((uint32_t)(1<<8))  //2
+#define HETPFR_LRPFC_2h         ((uint32_t)(2<<8))  //4
+#define HETPFR_LRPFC_3h         ((uint32_t)(3<<8))  //8
+#define HETPFR_LRPFC_4h         ((uint32_t)(4<<8))  //16
+#define HETPFR_LRPFC_5h         ((uint32_t)(5<<8))  //32
+#define HETPFR_LRPFC_6h         ((uint32_t)(6<<8))  //64
+#define HETPFR_LRPFC_7h         ((uint32_t)(7<<8))  //128
+//High-Resolution Pre-scale Factor Code.
+#define HETPFR_HRPFC(HR)        ((uint32_t)((HR - 1) & 0x3F)) //From 1 to 64
+
+//Дефайны HETEXC1
+#define HETEXC1_APCNT_OVRFL_ENA ((uint32_t)(1<<24)) //Enables the APCNT overflow exception.
+#define HETEXC1_APCNT_UNRFL_ENA ((uint32_t)(1<<16)) //Enables the APCNT underflow exception.
+#define HETEXC1_PRGM_OVRFL_ENA  ((uint32_t)(1<<8))  //Enables the program overflow exception.
+#define HETEXC1_APCNT_OVRFL_PRY ((uint32_t)(1<<2))  //Exception priority level 1
+#define HETEXC1_APCNT_UNRFL_PRY ((uint32_t)(1<<1))  //Exception priority level 1.
+#define HETEXC1_PRGM_OVRFL_PRY  ((uint32_t)(1))     //Exception priority level 1.
+
+//Дефайны HETEXC2
+#define HETEXC2_DEBUG_STATUS_FLAG   ((uint32_t)(1<<8))  //Debug Status Flag
+#define HETEXC2_APCNT_OVRFL_FLAG    ((uint32_t)(1<<2))  //APCNT Overflow Flag
+#define HETEXC2_APCNT_UNDFL_FLAG    ((uint32_t)(1<<1))  //APCNT Underflow Flag
+#define HETEXC2_PRGM_OVERFL_FLAG    ((uint32_t)(1))     //Program Overflow Flag
+
+//Дефайны HETREQENS/HETREQENC
+#define HETREQEN_REQ(N)         ((uint32_t)(1<<N)) //Request Line N(0 to 7) Enable/Disable Bit
+
 typedef volatile struct hetBase
 {
     /*00*/ uint32_t HETGCR;        /*Global Configuration Register*/
