@@ -74,7 +74,7 @@
 #define HWAGCR2_FIL             ((uint32_t)(1<<8))  //Filter is enabled.
 #define HWAGCR2_STRT            ((uint32_t) 1)     //Start counting.
 
-//Дефайны HWAENASET/HWAENACLR
+//Дефайны HWAENASET/HWAENACLR and HWALVLSET/HWALVLCLR, and HWAFLG
 #define HWAENA_OVF_PERIOD               ((uint32_t) 1)          //Overflow period interrupt.
 #define HWAENA_SINGULARITY_NOT_FOUND    ((uint32_t) (1 << 1))   //Singularity not found interrupt.
 #define HWAENA_TOOTH                    ((uint32_t) (1 << 2))   //Tooth interrupt.
@@ -83,6 +83,31 @@
 #define HWAENA_BAD_ACT_EDGE_TOOTH       ((uint32_t) (1 << 5))   //Bad active edge tooth interrupt.
 #define HWAENA_GAP_FLAG                 ((uint32_t) (1 << 6))   //Gap flag interrupt.
 #define HWAENA_OVF_AINC                 ((uint32_t) (1 << 7))   //Angle increment overflow interrupt.
+
+//Дефайны HWAOFF0/HWAOFF1
+#define HWAOFF_PHANTOM                  ((uint32_t) 0)  //Phantom interrupt
+#define HWAOFF_OVF_PERIOD               ((uint32_t) 1)  //Overflow period
+#define HWAOFF_SINGULARITY_NOT_FOUND    ((uint32_t) 2)  //Singularity not found
+#define HWAOFF_TOOTH                    ((uint32_t) 3)  //Tooth interrupt
+#define HWAOFF_OVF_ACNT                 ((uint32_t) 4)  //ACNT overflow
+#define HWAOFF_SING_DRNG_NORM_TOOTH     ((uint32_t) 5)  //PCNT(n) > 2 × PCNT (n-1) during normal tooth
+#define HWAOFF_BAD_ACT_EDGE_TOOTH       ((uint32_t) 6)  //Bad active edge tooth
+#define HWAOFF_GAP_FLAG                 ((uint32_t) 7)  //Gap flag
+#define HWAOFF_OVF_AINC                 ((uint32_t) 8)  //Angle increment overflow
+
+//Дефайны HWASTWD
+#define HWASTWD_STWD(N)                 ((uint32_t) ((N) & 0xF))    //Step Width
+#define HWAG_STEP_WIDTH(STWD)           ((uint32_t) (4 << (STWD)))  //HWAG Step Width (Only for calculating)
+
+//Дефайны HWATHNB
+#define HWATHNB_THNB(N)                 ((uint32_t) ((N) & 0xFF))   //Teeth Number. Sets the teeth number with the maximum value of the toothed wheel.
+
+//Дефайны HWAFIL
+#define HWAFIL_FIL1(N)                  ((uint32_t) ((N) & 0x3FF))  //Filter Value. Contains the value to be compared to the tick counter.
+
+//Дефайн HWAFIL2
+#define HWAFIL2_FIL2(N)                 ((uint32_t) ((N) & 0xFFF))  //Filter Value 2. Contains the value to be compared to the tick counter during the singularity tooth.
+
 
 typedef volatile struct hetBase
 {
