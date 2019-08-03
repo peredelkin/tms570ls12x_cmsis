@@ -26,7 +26,7 @@
 
 //Дефайны HETPFR
 //Loop-Resolution Pre-scale Factor Code.
-#define HETPFR_LRPFC(N)         ((uint32_t)((1 << 8) & (0xF << 8)))  //[1-7] -> [2,4,8,16,32,64,128]
+#define HETPFR_LRPFC(N)         ((uint32_t)(((N) << 8) & (0xF << 8)))  //[1-7] -> [2,4,8,16,32,64,128]
 //High-Resolution Pre-scale Factor Code.
 #define HETPFR_HRPFC(N)         ((uint32_t)((N) & 0x3F)) //[0-63] -> [1-64]
 
