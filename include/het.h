@@ -28,7 +28,12 @@
 //Loop-Resolution Pre-scale Factor Code.
 #define HETPFR_LRPFC(N)         ((uint32_t)((1 << 8) & (0xF << 8)))  //[1-7] -> [2,4,8,16,32,64,128]
 //High-Resolution Pre-scale Factor Code.
-#define HETPFR_HRPFC(N)        ((uint32_t)((N) & 0x3F)) //[0-63] -> [1-64]
+#define HETPFR_HRPFC(N)         ((uint32_t)((N) & 0x3F)) //[0-63] -> [1-64]
+
+//Дефайны HETOFF
+#define HETOFF_OVF_PRG          ((uint32_t) 33) //Program Overflow
+#define HETOFF_UNF_APCNT        ((uint32_t) 34) //APCNT Underflow
+#define HETOFF_OVF_APCNT        ((uint32_t) 35) //APCNT Overflow
 
 //Дефайны HETEXC1
 #define HETEXC1_APCNT_OVRFL_ENA ((uint32_t)(1 << 24)) //Enables the APCNT overflow exception.
