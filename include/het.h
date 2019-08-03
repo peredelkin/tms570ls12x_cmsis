@@ -1,7 +1,7 @@
 /**
  * het.h
  * tms570ls12x
- *
+ * BE32
  *
  */
 
@@ -14,11 +14,11 @@
 #include "reg_gio.h"
 #include "static_assert.h"
 
+//Дефайны N2HET
+
 //Дефайны HETGCR
-#define HETGCR_HET_PIN_ENA      ((uint32_t)(1<<24)) //Enables the pin output buffer structure when DIR = output, PINDIS.x is set and nDIS = 1.
-#define HETGCR_MP_1h            ((uint32_t)(1<<21)) //The HTU has higher priority to access the N2HET RAM than the arbiter output.
-#define HETGCR_MP_2h            ((uint32_t)(2<<21)) //The HTU and the arbiter output use a round robin scheme to access the N2HET RAM.
-#define HETGCR_MP_3h            ((uint32_t)(3<<21)) //Reserved
+#define HETGCR_HET_PIN_ENA      ((uint32_t)(1 << 24)) //Enables the pin output buffer structure when DIR = output, PINDIS.x is set and nDIS = 1.
+#define HETGCR_MP(N)            ((uint32_t)(((N) << 21) & (0x3 << 21))) //
 #define HETGCR_PPF              ((uint32_t)(1<<18)) //When TO is 1,the program fields are readable but not writable for all masters, which could access the N2HET RAM.
 #define HETGCR_IS               ((uint32_t)(1<<17)) //N2HET ignores suspend mode and continues operation.
 #define HETGCR_CMS              ((uint32_t)(1<<16)) //N2HET is configured as a master.
@@ -26,32 +26,63 @@
 
 //Дефайны HETPFR
 //Loop-Resolution Pre-scale Factor Code.
-#define HETPFR_LRPFC_1h         ((uint32_t)(1<<8))  //2
-#define HETPFR_LRPFC_2h         ((uint32_t)(2<<8))  //4
-#define HETPFR_LRPFC_3h         ((uint32_t)(3<<8))  //8
-#define HETPFR_LRPFC_4h         ((uint32_t)(4<<8))  //16
-#define HETPFR_LRPFC_5h         ((uint32_t)(5<<8))  //32
-#define HETPFR_LRPFC_6h         ((uint32_t)(6<<8))  //64
-#define HETPFR_LRPFC_7h         ((uint32_t)(7<<8))  //128
+#define HETPFR_LRPFC(N)         ((uint32_t)((1 << 8) & (0xF << 8)))  //[1-7] -> [2,4,8,16,32,64,128]
 //High-Resolution Pre-scale Factor Code.
-#define HETPFR_HRPFC(HR)        ((uint32_t)((HR - 1) & 0x3F)) //From 1 to 64
+#define HETPFR_HRPFC(N)        ((uint32_t)((N) & 0x3F)) //[0-63] -> [1-64]
 
 //Дефайны HETEXC1
-#define HETEXC1_APCNT_OVRFL_ENA ((uint32_t)(1<<24)) //Enables the APCNT overflow exception.
-#define HETEXC1_APCNT_UNRFL_ENA ((uint32_t)(1<<16)) //Enables the APCNT underflow exception.
-#define HETEXC1_PRGM_OVRFL_ENA  ((uint32_t)(1<<8))  //Enables the program overflow exception.
-#define HETEXC1_APCNT_OVRFL_PRY ((uint32_t)(1<<2))  //Exception priority level 1
-#define HETEXC1_APCNT_UNRFL_PRY ((uint32_t)(1<<1))  //Exception priority level 1.
-#define HETEXC1_PRGM_OVRFL_PRY  ((uint32_t)(1))     //Exception priority level 1.
+#define HETEXC1_APCNT_OVRFL_ENA ((uint32_t)(1 << 24)) //Enables the APCNT overflow exception.
+#define HETEXC1_APCNT_UNRFL_ENA ((uint32_t)(1 << 16)) //Enables the APCNT underflow exception.
+#define HETEXC1_PRGM_OVRFL_ENA  ((uint32_t)(1 << 8))  //Enables the program overflow exception.
+#define HETEXC1_APCNT_OVRFL_PRY ((uint32_t)(1 << 2))  //Exception priority level 1
+#define HETEXC1_APCNT_UNRFL_PRY ((uint32_t)(1 << 1))  //Exception priority level 1.
+#define HETEXC1_PRGM_OVRFL_PRY  ((uint32_t) 1)     //Exception priority level 1.
 
 //Дефайны HETEXC2
-#define HETEXC2_DEBUG_STATUS_FLAG   ((uint32_t)(1<<8))  //Debug Status Flag
-#define HETEXC2_APCNT_OVRFL_FLAG    ((uint32_t)(1<<2))  //APCNT Overflow Flag
-#define HETEXC2_APCNT_UNDFL_FLAG    ((uint32_t)(1<<1))  //APCNT Underflow Flag
-#define HETEXC2_PRGM_OVERFL_FLAG    ((uint32_t)(1))     //Program Overflow Flag
+#define HETEXC2_DEBUG_STATUS_FLAG   ((uint32_t)(1 << 8))  //Debug Status Flag
+#define HETEXC2_APCNT_OVRFL_FLAG    ((uint32_t)(1 << 2))  //APCNT Overflow Flag
+#define HETEXC2_APCNT_UNDFL_FLAG    ((uint32_t)(1 << 1))  //APCNT Underflow Flag
+#define HETEXC2_PRGM_OVERFL_FLAG    ((uint32_t) 1)     //Program Overflow Flag
 
 //Дефайны HETREQENS/HETREQENC
-#define HETREQEN_REQ(N)         ((uint32_t)(1<<N)) //Request Line N(0 to 7) Enable/Disable Bit
+#define HETREQEN_REQ(N)         ((uint32_t)((1 << (N)) & 0xFF)) //Request Line N(0 to 7) Enable/Disable Bit
+
+//Дефайны HETREQDS
+#define HETREQDS_TDBS(N)        ((uint32_t)(((1 << (N)) << 16) & 0xF00))  //N2HET request line n is assigned to both DMA and HTU.
+#define HETREQDS_TDS(N)         ((uint32_t)((1 << (N)) & 0xF))  //N2HET request line n is assigned to DMA (TDBS bit n is zero).
+
+//Дефайны HETPCR
+#define HETPCR_TEST             ((uint32_t)(1<<8))  //Parity bits are memory mapped.
+#define HETPCR_PARITY_ENA       ((uint32_t)(0x5))   //Parity check is disabled.
+
+//Дефайны HETSFPRLD
+#define HETSFPRLD_CCDIV(N)      ((uint32_t)(((N) << 16) & (0x3 << 16))) //[0-3] -> [1-4] Ratio between the counter clock and VCLK2.
+#define HETSFPRLD_CPRLD(N)      ((uint32_t)((N) & 0x3FF)) //Counter Preload Value
+
+//Дефайны HWAG
+
+//Дефайны HWAPINSEL
+#define HWAPINSEL_PINSEL(N)     ((uint32_t)((N) & 0x1F)) //HWAG Pin Select.
+
+//Дефайны HWAGCR0
+#define HWAGCR0_RESET           ((uint32_t) 1)  //HWAG module is not in reset.
+
+//Дефайны HWAGCR2
+#define HWAGCR2_ARST            ((uint32_t)(1<<24)) //Reset ACNT once it reaches the angle zero point.
+#define HWAGCR2_TED             ((uint32_t)(1<<17)) //Rising edge.
+#define HWAGCR2_CRI             ((uint32_t)(1<<16)) //Criteria is enabled.
+#define HWAGCR2_FIL             ((uint32_t)(1<<8))  //Filter is enabled.
+#define HWAGCR2_STRT            ((uint32_t) 1)     //Start counting.
+
+//Дефайны HWAENASET/HWAENACLR
+#define HWAENA_OVF_PERIOD               ((uint32_t) 1)          //Overflow period interrupt.
+#define HWAENA_SINGULARITY_NOT_FOUND    ((uint32_t) (1 << 1))   //Singularity not found interrupt.
+#define HWAENA_TOOTH                    ((uint32_t) (1 << 2))   //Tooth interrupt.
+#define HWAENA_OVF_ACNT                 ((uint32_t) (1 << 3))   //ACNT overflow interrupt.
+#define HWAENA_SING_DRNG_NORM_TOOTH     ((uint32_t) (1 << 4))   //PCNT(n) > 2 x PCNT (n-1) during normal tooth interrupt.
+#define HWAENA_BAD_ACT_EDGE_TOOTH       ((uint32_t) (1 << 5))   //Bad active edge tooth interrupt.
+#define HWAENA_GAP_FLAG                 ((uint32_t) (1 << 6))   //Gap flag interrupt.
+#define HWAENA_OVF_AINC                 ((uint32_t) (1 << 7))   //Angle increment overflow interrupt.
 
 typedef volatile struct hetBase
 {
