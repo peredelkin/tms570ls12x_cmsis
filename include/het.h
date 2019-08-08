@@ -218,6 +218,7 @@ STATIC_ASSERT(sizeof(hetRAMBASE_t) == 0xA00,);
 
 extern void hwag_init(hetBASE_t* het,uint8_t pin,bool arst,bool ted,bool cri,bool fil,uint8_t stwd,uint8_t thnb,uint16_t fil1,uint16_t fil2);
 extern void hwag_interrupt(hetBASE_t* het,uint32_t hwena,bool ena);
+extern void hwag_interrupt_flag_clear(hetBASE_t* het,uint32_t hwena);
 extern void hwag_start(hetBASE_t* het);
 extern void hwag_stop(hetBASE_t* het);
 

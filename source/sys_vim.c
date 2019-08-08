@@ -492,7 +492,7 @@ void vimInit(void)
                         | (uint32)((uint32)0U << 20U) /*20*/
                         | (uint32)((uint32)0U << 21U) /*21*/
                         | (uint32)((uint32)0U << 22U) /*22*/
-                        | (uint32)((uint32)1U << 23U) /*GIO_interrupt_B 23*/
+                        | (uint32)((uint32)0U << 23U) /*GIO_interrupt_B 23*/
                         | (uint32)((uint32)1U << 24U) /*N2HET1_level_1_interrupt 24*/
                         | (uint32)((uint32)0U << 25U) /*25*/
                         | (uint32)((uint32)0U << 26U) /*26*/
