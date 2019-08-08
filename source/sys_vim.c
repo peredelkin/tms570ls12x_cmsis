@@ -469,137 +469,137 @@ void vimInit(void)
 
 
     /* enable interrupts */
-    vimREG->REQMASKSET0 = (uint32)((uint32)1U << 0U)
-                        | (uint32)((uint32)1U << 1U)
-                        | (uint32)((uint32)0U << 2U)
-                        | (uint32)((uint32)0U << 3U)
-                        | (uint32)((uint32)0U << 4U)
-                        | (uint32)((uint32)0U << 5U)
-                        | (uint32)((uint32)0U << 6U)
-                        | (uint32)((uint32)0U << 7U)
-                        | (uint32)((uint32)0U << 8U)
-                        | (uint32)((uint32)0U << 9U)
-                        | (uint32)((uint32)0U << 10U)
-                        | (uint32)((uint32)0U << 11U)
-                        | (uint32)((uint32)0U << 12U)
-                        | (uint32)((uint32)0U << 13U)
-                        | (uint32)((uint32)0U << 14U)
-                        | (uint32)((uint32)0U << 15U)
-                        | (uint32)((uint32)0U << 16U)
-                        | (uint32)((uint32)0U << 17U)
-                        | (uint32)((uint32)0U << 18U)
-                        | (uint32)((uint32)0U << 19U)
-                        | (uint32)((uint32)0U << 20U)
-                        | (uint32)((uint32)0U << 21U)
-                        | (uint32)((uint32)0U << 22U)
-                        | (uint32)((uint32)1U << 23U)
-                        | (uint32)((uint32)0U << 24U)
-                        | (uint32)((uint32)0U << 25U)
-                        | (uint32)((uint32)0U << 26U)
-                        | (uint32)((uint32)0U << 27U)
-                        | (uint32)((uint32)0U << 28U)
-                        | (uint32)((uint32)0U << 29U)
-                        | (uint32)((uint32)0U << 30U)
-                        | (uint32)((uint32)0U << 31U);
+    vimREG->REQMASKSET0 = (uint32)((uint32)1U << 0U) /*0*/
+                        | (uint32)((uint32)1U << 1U) /*1*/
+                        | (uint32)((uint32)0U << 2U) /*2*/
+                        | (uint32)((uint32)0U << 3U) /*3*/
+                        | (uint32)((uint32)0U << 4U) /*4*/
+                        | (uint32)((uint32)0U << 5U) /*5*/
+                        | (uint32)((uint32)0U << 6U) /*6*/
+                        | (uint32)((uint32)0U << 7U) /*7*/
+                        | (uint32)((uint32)0U << 8U) /*8*/
+                        | (uint32)((uint32)0U << 9U) /*9*/
+                        | (uint32)((uint32)0U << 10U) /*10*/
+                        | (uint32)((uint32)0U << 11U) /*11*/
+                        | (uint32)((uint32)0U << 12U) /*12*/
+                        | (uint32)((uint32)0U << 13U) /*13*/
+                        | (uint32)((uint32)0U << 14U) /*14*/
+                        | (uint32)((uint32)0U << 15U) /*15*/
+                        | (uint32)((uint32)0U << 16U) /*16*/
+                        | (uint32)((uint32)0U << 17U) /*17*/
+                        | (uint32)((uint32)0U << 18U) /*18*/
+                        | (uint32)((uint32)0U << 19U) /*19*/
+                        | (uint32)((uint32)0U << 20U) /*20*/
+                        | (uint32)((uint32)0U << 21U) /*21*/
+                        | (uint32)((uint32)0U << 22U) /*22*/
+                        | (uint32)((uint32)1U << 23U) /*GIO_interrupt_B 23*/
+                        | (uint32)((uint32)1U << 24U) /*N2HET1_level_1_interrupt 24*/
+                        | (uint32)((uint32)0U << 25U) /*25*/
+                        | (uint32)((uint32)0U << 26U) /*26*/
+                        | (uint32)((uint32)0U << 27U) /*27*/
+                        | (uint32)((uint32)0U << 28U) /*28*/
+                        | (uint32)((uint32)0U << 29U) /*29*/
+                        | (uint32)((uint32)0U << 30U) /*30*/
+                        | (uint32)((uint32)0U << 31U); /*31*/
 
-    vimREG->REQMASKSET1 = (uint32)((uint32)0U << 0U)
-                        | (uint32)((uint32)0U << 1U)
-                        | (uint32)((uint32)0U << 2U)
-                        | (uint32)((uint32)0U << 3U)
-                        | (uint32)((uint32)0U << 4U)
-                        | (uint32)((uint32)0U << 5U)
-                        | (uint32)((uint32)0U << 6U)
-                        | (uint32)((uint32)0U << 7U)
-                        | (uint32)((uint32)0U << 8U)
-                        | (uint32)((uint32)0U << 9U)
-                        | (uint32)((uint32)0U << 10U)
-                        | (uint32)((uint32)0U << 11U)
-                        | (uint32)((uint32)0U << 12U)
-                        | (uint32)((uint32)0U << 13U)
-                        | (uint32)((uint32)0U << 14U)
-                        | (uint32)((uint32)0U << 15U)
-                        | (uint32)((uint32)0U << 16U)
-                        | (uint32)((uint32)0U << 17U)
-                        | (uint32)((uint32)0U << 18U)
-                        | (uint32)((uint32)0U << 19U)
-                        | (uint32)((uint32)0U << 20U)
-                        | (uint32)((uint32)0U << 21U)
-                        | (uint32)((uint32)0U << 22U)
-                        | (uint32)((uint32)0U << 23U)
-                        | (uint32)((uint32)0U << 24U)
-                        | (uint32)((uint32)0U << 25U)
-                        | (uint32)((uint32)0U << 26U)
-                        | (uint32)((uint32)0U << 27U)
-                        | (uint32)((uint32)0U << 28U)
-                        | (uint32)((uint32)0U << 29U)
-                        | (uint32)((uint32)0U << 30U)
-                        | (uint32)((uint32)0U << 31U);
+    vimREG->REQMASKSET1 = (uint32)((uint32)0U << 0U) /*32*/
+                        | (uint32)((uint32)0U << 1U) /*33*/
+                        | (uint32)((uint32)0U << 2U) /*34*/
+                        | (uint32)((uint32)0U << 3U) /*35*/
+                        | (uint32)((uint32)0U << 4U) /*36*/
+                        | (uint32)((uint32)0U << 5U) /*37*/
+                        | (uint32)((uint32)0U << 6U) /*38*/
+                        | (uint32)((uint32)0U << 7U) /*39*/
+                        | (uint32)((uint32)0U << 8U) /*40*/
+                        | (uint32)((uint32)0U << 9U) /*41*/
+                        | (uint32)((uint32)0U << 10U) /*42*/
+                        | (uint32)((uint32)0U << 11U) /*43*/
+                        | (uint32)((uint32)0U << 12U) /*44*/
+                        | (uint32)((uint32)0U << 13U) /*45*/
+                        | (uint32)((uint32)0U << 14U) /*46*/
+                        | (uint32)((uint32)0U << 15U) /*47*/
+                        | (uint32)((uint32)0U << 16U) /*48*/
+                        | (uint32)((uint32)0U << 17U) /*49*/
+                        | (uint32)((uint32)0U << 18U) /*50*/
+                        | (uint32)((uint32)0U << 19U) /*51*/
+                        | (uint32)((uint32)0U << 20U) /*52*/
+                        | (uint32)((uint32)0U << 21U) /*53*/
+                        | (uint32)((uint32)0U << 22U) /*54*/
+                        | (uint32)((uint32)0U << 23U) /*55*/
+                        | (uint32)((uint32)0U << 24U) /*56*/
+                        | (uint32)((uint32)0U << 25U) /*57*/
+                        | (uint32)((uint32)0U << 26U) /*58*/
+                        | (uint32)((uint32)0U << 27U) /*59*/
+                        | (uint32)((uint32)0U << 28U) /*60*/
+                        | (uint32)((uint32)0U << 29U) /*61*/
+                        | (uint32)((uint32)0U << 30U) /*62*/
+                        | (uint32)((uint32)0U << 31U); /*63*/
 
-    vimREG->REQMASKSET2 = (uint32)((uint32)0U << 0U)
-                        | (uint32)((uint32)0U << 1U)
-                        | (uint32)((uint32)0U << 2U)
-                        | (uint32)((uint32)0U << 3U)
-                        | (uint32)((uint32)0U << 4U)
-                        | (uint32)((uint32)0U << 5U)
-                        | (uint32)((uint32)0U << 6U)
-                        | (uint32)((uint32)0U << 7U)
-                        | (uint32)((uint32)0U << 8U)
-                        | (uint32)((uint32)0U << 9U)
-                        | (uint32)((uint32)0U << 10U)
-                        | (uint32)((uint32)0U << 11U)
-                        | (uint32)((uint32)0U << 12U)
-                        | (uint32)((uint32)0U << 13U)
-                        | (uint32)((uint32)0U << 14U)
-                        | (uint32)((uint32)0U << 15U)
-                        | (uint32)((uint32)0U << 16U)
-                        | (uint32)((uint32)0U << 17U)
-                        | (uint32)((uint32)0U << 18U)
-                        | (uint32)((uint32)0U << 19U)
-                        | (uint32)((uint32)0U << 20U)
-                        | (uint32)((uint32)0U << 21U)
-                        | (uint32)((uint32)0U << 22U)
-                        | (uint32)((uint32)0U << 23U)
-                        | (uint32)((uint32)0U << 24U)
-                        | (uint32)((uint32)0U << 25U)
-                        | (uint32)((uint32)0U << 26U)
-                        | (uint32)((uint32)0U << 27U)
-                        | (uint32)((uint32)0U << 28U)
-                        | (uint32)((uint32)0U << 29U)
-                        | (uint32)((uint32)0U << 30U)
-                        | (uint32)((uint32)0U << 31U);
+    vimREG->REQMASKSET2 = (uint32)((uint32)0U << 0U) /*64*/
+                        | (uint32)((uint32)0U << 1U) /*65*/
+                        | (uint32)((uint32)0U << 2U) /*66*/
+                        | (uint32)((uint32)0U << 3U) /*67*/
+                        | (uint32)((uint32)0U << 4U) /*68*/
+                        | (uint32)((uint32)0U << 5U) /*69*/
+                        | (uint32)((uint32)0U << 6U) /*70*/
+                        | (uint32)((uint32)0U << 7U) /*71*/
+                        | (uint32)((uint32)0U << 8U) /*72*/
+                        | (uint32)((uint32)0U << 9U) /*73*/
+                        | (uint32)((uint32)0U << 10U) /*74*/
+                        | (uint32)((uint32)0U << 11U) /*75*/
+                        | (uint32)((uint32)0U << 12U) /*76*/
+                        | (uint32)((uint32)0U << 13U) /*77*/
+                        | (uint32)((uint32)0U << 14U) /*78*/
+                        | (uint32)((uint32)0U << 15U) /*79*/
+                        | (uint32)((uint32)0U << 16U) /*80*/
+                        | (uint32)((uint32)0U << 17U) /*81*/
+                        | (uint32)((uint32)0U << 18U) /*82*/
+                        | (uint32)((uint32)0U << 19U) /*83*/
+                        | (uint32)((uint32)0U << 20U) /*84*/
+                        | (uint32)((uint32)0U << 21U) /*85*/
+                        | (uint32)((uint32)0U << 22U) /*86*/
+                        | (uint32)((uint32)0U << 23U) /*87*/
+                        | (uint32)((uint32)0U << 24U) /*88*/
+                        | (uint32)((uint32)0U << 25U) /*89*/
+                        | (uint32)((uint32)0U << 26U) /*90*/
+                        | (uint32)((uint32)0U << 27U) /*91*/
+                        | (uint32)((uint32)0U << 28U) /*92*/
+                        | (uint32)((uint32)0U << 29U) /*93*/
+                        | (uint32)((uint32)0U << 30U) /*94*/
+                        | (uint32)((uint32)0U << 31U); /*95*/
 
-    vimREG->REQMASKSET3 = (uint32)((uint32)0U << 0U)
-                        | (uint32)((uint32)0U << 1U)
-                        | (uint32)((uint32)0U << 2U)
-                        | (uint32)((uint32)0U << 3U)
-                        | (uint32)((uint32)0U << 4U)
-                        | (uint32)((uint32)0U << 5U)
-                        | (uint32)((uint32)0U << 6U)
-                        | (uint32)((uint32)0U << 7U)
-                        | (uint32)((uint32)0U << 8U)
-                        | (uint32)((uint32)0U << 9U)
-                        | (uint32)((uint32)0U << 10U)
-                        | (uint32)((uint32)0U << 11U)
-                        | (uint32)((uint32)0U << 12U)
-                        | (uint32)((uint32)0U << 13U)
-                        | (uint32)((uint32)0U << 14U)
-                        | (uint32)((uint32)0U << 15U)
-                        | (uint32)((uint32)0U << 16U)
-                        | (uint32)((uint32)0U << 17U)
-                        | (uint32)((uint32)0U << 18U)
-                        | (uint32)((uint32)0U << 19U)
-                        | (uint32)((uint32)0U << 20U)
-                        | (uint32)((uint32)0U << 21U)
-                        | (uint32)((uint32)0U << 22U)
-                        | (uint32)((uint32)0U << 23U)
-                        | (uint32)((uint32)0U << 24U)
-                        | (uint32)((uint32)0U << 25U)
-                        | (uint32)((uint32)0U << 26U)
-                        | (uint32)((uint32)0U << 27U)
-                        | (uint32)((uint32)0U << 28U)
-                        | (uint32)((uint32)0U << 29U)
-                        | (uint32)((uint32)0U << 30U)
-                        | (uint32)((uint32)0U << 31U);
+    vimREG->REQMASKSET3 = (uint32)((uint32)0U << 0U) /*96*/
+                        | (uint32)((uint32)0U << 1U) /*97*/
+                        | (uint32)((uint32)0U << 2U) /*98*/
+                        | (uint32)((uint32)0U << 3U) /*99*/
+                        | (uint32)((uint32)0U << 4U) /*100*/
+                        | (uint32)((uint32)0U << 5U) /*101*/
+                        | (uint32)((uint32)0U << 6U) /*102*/
+                        | (uint32)((uint32)0U << 7U) /*103*/
+                        | (uint32)((uint32)0U << 8U) /*104*/
+                        | (uint32)((uint32)0U << 9U) /*105*/
+                        | (uint32)((uint32)0U << 10U) /*106*/
+                        | (uint32)((uint32)0U << 11U) /*107*/
+                        | (uint32)((uint32)0U << 12U) /*108*/
+                        | (uint32)((uint32)0U << 13U) /*109*/
+                        | (uint32)((uint32)0U << 14U) /*110*/
+                        | (uint32)((uint32)0U << 15U) /*111*/
+                        | (uint32)((uint32)0U << 16U) /*112*/
+                        | (uint32)((uint32)0U << 17U) /*113*/
+                        | (uint32)((uint32)0U << 18U) /*114*/
+                        | (uint32)((uint32)0U << 19U) /*115*/
+                        | (uint32)((uint32)0U << 20U) /*116*/
+                        | (uint32)((uint32)0U << 21U) /*117*/
+                        | (uint32)((uint32)0U << 22U) /*118*/
+                        | (uint32)((uint32)0U << 23U) /*119*/
+                        | (uint32)((uint32)0U << 24U) /*120*/
+                        | (uint32)((uint32)0U << 25U) /*121*/
+                        | (uint32)((uint32)0U << 26U) /*122*/
+                        | (uint32)((uint32)0U << 27U) /*123*/
+                        | (uint32)((uint32)0U << 28U) /*124*/
+                        | (uint32)((uint32)0U << 29U) /*125*/
+                        | (uint32)((uint32)0U << 30U) /*126*/
+                        | (uint32)((uint32)0U << 31U); /*127*/
 
     /* Set Capture event sources */
 	vimREG->CAPEVT = ((uint32)((uint32)0U << 0U)
