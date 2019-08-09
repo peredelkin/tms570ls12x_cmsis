@@ -559,7 +559,7 @@ void vimInit(void)
                         | (uint32)((uint32)0U << 21U) /*85*/
                         | (uint32)((uint32)0U << 22U) /*86*/
                         | (uint32)((uint32)0U << 23U) /*87*/
-                        | (uint32)((uint32)0U << 24U) /*HWA1_INT_REQ_L 88*/
+                        | (uint32)((uint32)1U << 24U) /*HWA1_INT_REQ_L 88*/
                         | (uint32)((uint32)0U << 25U) /*89*/
                         | (uint32)((uint32)0U << 26U) /*90*/
                         | (uint32)((uint32)0U << 27U) /*91*/
