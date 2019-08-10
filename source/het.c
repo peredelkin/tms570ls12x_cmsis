@@ -20,14 +20,6 @@ void hwag_init(hetBASE_t* nhet,uint8_t pin,bool arst,bool ted,bool cri,bool fil,
     nhet->HWAFIL2 = HWAFIL2_FIL2(fil2);
 }
 
-void hwag_start(hetBASE_t* het) {
-    het->HWAGCR2 |= HWAGCR2_STRT;
-}
-
-void hwag_stop(hetBASE_t* het) {
-    het->HWAGCR2 &= ~HWAGCR2_STRT;
-}
-
 void hwag_interrupt(hetBASE_t* het,uint32_t hwena,bool ena) {
     if(ena) het->HWAENASET = hwena;
     else het->HWAENACLR = hwena;

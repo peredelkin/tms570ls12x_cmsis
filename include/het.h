@@ -10,9 +10,10 @@
 #ifndef __HET_H__
 #define __HET_H__
 
+#include "static_assert.h"
 #include "sys_common.h"
 #include "reg_gio.h"
-#include "static_assert.h"
+#include "std_nhet.h"
 
 //Дефайны N2HET
 
