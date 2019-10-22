@@ -10,6 +10,18 @@
 #ifndef __HET_H__
 #define __HET_H__
 
+#define HETOFF_OVF_PRG 33
+
+#define HWAOFF_PHANTOM 0
+#define HWAOFF_OVF_PERIOD 1
+#define HWAOFF_SINGULARITY_NOT_FOUND 2
+#define HWAOFF_TOOTH 3
+#define HWAOFF_OVF_ACNT 4
+#define HWAOFF_SING_DRNG_NORM_TOOTH 5
+#define HWAOFF_BAD_ACT_EDGE_TOOTH 6
+#define HWAOFF_GAP_FLAG 7
+#define HWAOFF_OVF_AINC 8
+
 #include "static_assert.h"
 #include "sys_common.h"
 #include "reg_gio.h"

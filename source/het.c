@@ -1,23 +1,23 @@
 #include "het.h"
 
 void hwag_init(hetBASE_t* nhet,uint8_t pin,bool arst,bool ted,bool cri,bool fil,uint8_t stwd,uint8_t thnb,uint16_t fil1,uint16_t fil2) {
-    nhet->HWAGCR0 = HWAGCR0_RESET; //HWAG Enable;
+    nhet->HWAGCR0 = 1; //HWAG Enable;
 
-    nhet->HWAPINSEL = HWAPINSEL_PINSEL(pin); //HWAG Pin Select
+    nhet->HWAPINSEL = 2; //HWAG Pin Select
 
     nhet->HWAGCR2 = 0;
-    if(arst)nhet->HWAGCR2 |= HWAGCR2_ARST;
-    if(ted) nhet->HWAGCR2 |= HWAGCR2_TED;
-    if(cri) nhet->HWAGCR2 |= HWAGCR2_CRI;
-    if(fil) nhet->HWAGCR2 |= HWAGCR2_FIL;
+    if(arst)nhet->HWAGCR2 |= (1<<24);
+    if(ted) nhet->HWAGCR2 |= (1<<17);
+    if(cri) nhet->HWAGCR2 |= (1<<16);
+    if(fil) nhet->HWAGCR2 |= (1<<8);
 
-    nhet->HWASTWD = HWASTWD_STWD(stwd);
+    nhet->HWASTWD = (0xF & stwd);
 
-    nhet->HWATHNB = HWATHNB_THNB(thnb);
+    nhet->HWATHNB = (0xFF & thnb);
 
-    nhet->HWAFIL = HWAFIL_FIL1(fil1);
+    nhet->HWAFIL = (0x3FF & fil1);
 
-    nhet->HWAFIL2 = HWAFIL2_FIL2(fil2);
+    nhet->HWAFIL2 = (0xFFF & fil2);
 }
 
 void hwag_interrupt(hetBASE_t* het,uint32_t hwena,bool ena) {
